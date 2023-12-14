@@ -6,6 +6,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private String filePath;
+    private int userID;
     public String getEmail() {
         return email;
     }
@@ -44,5 +46,21 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }
