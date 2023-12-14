@@ -13,6 +13,6 @@ public class Controller {
 //    private ArrayList<User>users;
     @PostMapping("/signup")
     public boolean signed(@RequestBody User user){
-
+        return true;
     }
 }
