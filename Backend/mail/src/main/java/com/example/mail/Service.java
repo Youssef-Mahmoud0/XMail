@@ -6,10 +6,10 @@ public class Service {
         this.currentuser = user;
     }
     public void addMail(MailParent mail, String type){
-        MailFactory factory = new MailFactory();
+        FolderFactory factory = new FolderFactory();
         if(type.equals("inbox")){
             if(currentuser.getInbox() == null){
-                factory.createMail(type, mail);
+                factory.createFolder(type, mail);
             }
             else{
                 currentuser.addInbox(mail);
@@ -17,7 +17,7 @@ public class Service {
         }
         if(type.equals("sent")){
             if(currentuser.getSent() == null){
-                factory.createMail(type, mail);
+                factory.createFolder(type, mail);
             }
             else{
                 currentuser.addSent(mail);
@@ -25,7 +25,7 @@ public class Service {
         }
         if(type.equals("draft")){
             if(currentuser.getDraft() == null){
-                factory.createMail(type, mail);
+                factory.createFolder(type, mail);
             }
             else{
                 currentuser.addDraft(mail);

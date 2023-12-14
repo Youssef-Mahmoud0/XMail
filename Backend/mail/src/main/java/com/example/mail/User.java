@@ -8,9 +8,9 @@ public class User {
     private String phoneNumber;
     private String filePath;
     private int userID;
-    private inboxMail inbox;
-    private sentMail sent;
-    private draftMail draft;
+    private InboxFolder inbox;
+    private SentFolder sent;
+    private DraftFolder draft;
     public User(){
         this.inbox = null;
         this.sent = null;
@@ -72,27 +72,27 @@ public class User {
         this.userID = userID;
     }
 
-    public inboxMail getInbox() {
+    public InboxFolder getInbox() {
         return inbox;
     }
 
-    public void setInbox(inboxMail inbox) {
+    public void setInbox(InboxFolder inbox) {
         this.inbox = inbox;
     }
 
-    public sentMail getSent() {
+    public SentFolder getSent() {
         return sent;
     }
 
-    public void setSent(sentMail sent) {
+    public void setSent(SentFolder sent) {
         this.sent = sent;
     }
 
-    public draftMail getDraft() {
+    public DraftFolder getDraft() {
         return draft;
     }
 
-    public void setDraft(draftMail draft) {
+    public void setDraft(DraftFolder draft) {
         this.draft = draft;
     }
     public void addInbox(MailParent mail){

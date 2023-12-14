@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class MailParent {
     private String subject;
-    private String to;
+    private ArrayList <String> to;
     private String from;
     private String content;
     private ArrayList<String> attachments;
     private String date;
 
     public MailParent(){}
-    public MailParent(String subject, String to, String from, String content, ArrayList<String> attachments, String date){
+    public MailParent(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
         this.subject = subject;
         this.to = to;
         this.from = from;
@@ -27,11 +27,11 @@ public class MailParent {
         this.subject = subject;
     }
 
-    public String getTo() {
+    public ArrayList<String> getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public void setTo(ArrayList<String> to) {
         this.to = to;
     }
 
