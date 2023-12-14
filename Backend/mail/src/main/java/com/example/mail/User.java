@@ -8,13 +8,14 @@ public class User {
     private String phoneNumber;
     private String filePath;
     private int userID;
-    private InboxFolder inbox;
-    private SentFolder sent;
-    private DraftFolder draft;
+    private InboxFolder inboxFolder;
+    private SentFolder sentFolder;
+    private DraftFolder draftFolder;
+    public FolderFactory folderFactory = new FolderFactory();
     public User(){
-        this.inbox = null;
-        this.sent = null;
-        this.draft = null;
+        this.inboxFolder = null;
+        this.sentFolder = null;
+        this.draftFolder = null;
     }
     public String getEmail() {
         return email;
@@ -72,37 +73,42 @@ public class User {
         this.userID = userID;
     }
 
-    public InboxFolder getInbox() {
-        return inbox;
+    public InboxFolder getInstanceInboxFolder() {
+        if(this.inboxFolder == null)
+            return (InboxFolder) folderFactory.createFolder("inbox");
+        return this.inboxFolder;
     }
 
-    public void setInbox(InboxFolder inbox) {
-        this.inbox = inbox;
+    public void setInboxFolder(InboxFolder inboxFolder) {
+        this.inboxFolder = inboxFolder;
     }
 
-    public SentFolder getSent() {
-        return sent;
+    public SentFolder getInstanceSentFolder() {
+        if(this.sentFolder == null)
+            return (SentFolder) folderFactory.createFolder("sent");
+        return this.sentFolder;
     }
 
-    public void setSent(SentFolder sent) {
-        this.sent = sent;
+    public void setSentFolder(SentFolder sentFolder) {
+        this.sentFolder = sentFolder;
     }
 
-    public DraftFolder getDraft() {
-        return draft;
+    public DraftFolder getInstanceDraftFolder() {
+        if (this.draftFolder == null)
+            return (DraftFolder) folderFactory.createFolder("draft");
+        return this.draftFolder;
     }
-
-    public void setDraft(DraftFolder draft) {
-        this.draft = draft;
+    public void setDraftFolder(DraftFolder draftFolder) {
+        this.draftFolder = draftFolder;
     }
-    public void addInbox(MailParent mail){
-        this.inbox.AddMail(mail);
-    }
-    public void addDraft(MailParent mail){
-        this.draft.AddMail(mail);
-    }
-    public void addSent(MailParent mail){
-        this.sent.AddMail(mail);
-    }
+//    public void addInbox(MailParent mail){
+//        this.inboxFolder.addMail(mail);
+//    }
+//    public void addDraft(MailParent mail){
+//        this.draftFolder.addMail(mail);
+//    }
+//    public void addSent(MailParent mail){
+//        this.sentFolder.addMail(mail);
+//    }
 
 }
