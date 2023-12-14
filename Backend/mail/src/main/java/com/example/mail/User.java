@@ -8,6 +8,14 @@ public class User {
     private String phoneNumber;
     private String filePath;
     private int userID;
+    private inboxMail inbox;
+    private sentMail sent;
+    private draftMail draft;
+    public User(){
+        this.inbox = null;
+        this.sent = null;
+        this.draft = null;
+    }
     public String getEmail() {
         return email;
     }
@@ -63,4 +71,38 @@ public class User {
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
+    public inboxMail getInbox() {
+        return inbox;
+    }
+
+    public void setInbox(inboxMail inbox) {
+        this.inbox = inbox;
+    }
+
+    public sentMail getSent() {
+        return sent;
+    }
+
+    public void setSent(sentMail sent) {
+        this.sent = sent;
+    }
+
+    public draftMail getDraft() {
+        return draft;
+    }
+
+    public void setDraft(draftMail draft) {
+        this.draft = draft;
+    }
+    public void addInbox(MailParent mail){
+        this.inbox.AddMail(mail);
+    }
+    public void addDraft(MailParent mail){
+        this.draft.AddMail(mail);
+    }
+    public void addSent(MailParent mail){
+        this.sent.AddMail(mail);
+    }
+
 }

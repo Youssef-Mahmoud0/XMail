@@ -13,7 +13,4 @@ public class sentMail extends MailParent{
         return sentMails;
     }
 
-    public void setSentMails(ArrayList<MailParent> sentMails) {
-        this.sentMails = sentMails;
-    }
 }

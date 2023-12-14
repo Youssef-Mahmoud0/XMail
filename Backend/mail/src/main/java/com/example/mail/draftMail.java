@@ -12,8 +12,4 @@ public class draftMail extends MailParent{
     public ArrayList<MailParent> getDraftMails() {
         return draftMails;
     }
-
-    public void setDraftMails(ArrayList<MailParent> draftMails) {
-        this.draftMails = draftMails;
-    }
 }
