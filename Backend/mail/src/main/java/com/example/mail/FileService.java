@@ -13,7 +13,7 @@ interface FileGenerator{
 
 public class FileService implements FileGenerator{
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final String userPath = "D:\\Rowan's CSE\\Term 5\\OOP\\XMail\\Backend\\mail\\user";
+    private final String userPath = "M:\\FOE AU\\CSE 2\\first semster\\Programming 2\\labs\\lab4\\Backend\\mail\\users\\user";
     public String generatePath(int userID){
         return this.userPath + userID +".json";
     }

@@ -4,6 +4,10 @@ import java.util.HashMap;
 public class RegisteredUsers {
     private HashMap<String, Integer> currentUsers;
 
+    public RegisteredUsers(){
+        this.currentUsers = new HashMap<String, Integer>();
+    }
+
     public User addUser(UserDto user){
         if(this.currentUsers.containsKey(user.getEmail())){
             return null;

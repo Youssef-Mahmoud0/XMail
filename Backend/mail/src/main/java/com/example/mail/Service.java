@@ -1,5 +1,6 @@
 package com.example.mail;
 
+@org.springframework.stereotype.Service
 public class Service {
     public User currentuser;
     private final RegisteredUsers registeredUsers = new RegisteredUsers();
@@ -15,8 +16,14 @@ public class Service {
     }
     public User signIn(UserDto user){
         int id = registeredUsers.getUserId(user.getEmail());
-        if (id!=0)
-            return file.getJsonData(id);
-        return null;
+        if (id!=0) {
+            User newUser = file.getJsonData(id);
+            if(user.getPassword().equals(newUser.getPassword()))return newUser;
+            return new User();
+        }
+        return new User();
+    }
+    public void signOut(){
+        this.currentuser = null;
     }
 }

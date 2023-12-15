@@ -12,10 +12,15 @@ public class Controller {
 
     @PostMapping("/signUp")
     public User signUp(@RequestBody UserDto user){
+        System.out.println("Aaaaaaaaaaaaah");
         return service.signUp(user);
     }
     @PostMapping("/signIn")
     public User signIn(@RequestBody UserDto user){
         return service.signIn(user);
+    }
+    @GetMapping("/signOut")
+    public void signOut(){
+        service.signOut();
     }
 }
