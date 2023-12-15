@@ -9,10 +9,14 @@ import java.util.ArrayList;
 @RequestMapping("/")
 @CrossOrigin(origins = "*")
 public class Controller {
-//    @Autowired
-//    private ArrayList<User>users;
+    @Autowired
+    Service service = new Service();
+
     @PostMapping("/signup")
-    public boolean signed(@RequestBody User user){
-        return true;
+    public User sigup(@RequestBody UserDto user){
+        return service.signup(user);
+    }
+    public User signin(@RequestBody UserDto user){
+        return service.signin(user);
     }
 }

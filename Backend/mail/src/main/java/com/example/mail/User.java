@@ -6,17 +6,29 @@ public class User {
     private String firstName;
     private String lastName;
     private String dob;
-    private String filePath;
     private int userID;
+    private String filePath;
     private InboxFolder inboxFolder;
     private SentFolder sentFolder;
     private DraftFolder draftFolder;
     public FolderFactory folderFactory = new FolderFactory();
+    public User(UserDto user, int id){
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.dob = user.getDob();
+        this.userID = id;
+        this.inboxFolder = null;
+        this.sentFolder = null;
+        this.draftFolder = null;
+    }
     public User(){
         this.inboxFolder = null;
         this.sentFolder = null;
         this.draftFolder = null;
     }
+
     public String getEmail() {
         return email;
     }
