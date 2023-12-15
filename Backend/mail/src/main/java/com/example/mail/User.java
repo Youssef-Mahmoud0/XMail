@@ -5,7 +5,7 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private String phoneNumber;
+    private String dob;
     private String filePath;
     private int userID;
     private InboxFolder inboxFolder;
@@ -49,12 +49,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getDob() {
+        return dob;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
     public String getFilePath() {
