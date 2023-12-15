@@ -5,17 +5,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 interface FileGenerator{
     void generateJsonFile(User user);
     User getJsonData(int userID);
+    void generateRegisteredJsonFile(RegisteredUsers registeredUsers);
+    HashMap<String, Integer> getRegisteredJsonFile();
 }
 
 public class FileService implements FileGenerator{
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final String userPath = "M:\\FOE AU\\CSE 2\\first semster\\Programming 2\\labs\\lab4\\Backend\\mail\\users\\user";
+    private final String userPath = "D:\\Rowan's CSE\\Term 5\\OOP\\XMail\\Backend\\mail\\users";
+
+    private final String registeredPath = "D:\\Rowan's CSE\\Term 5\\OOP\\XMail\\Backend\\mail\\users\\RegisteredUsers.json";
     public String generatePath(int userID){
-        return this.userPath + userID +".json";
+        return this.userPath +"\\user" +userID +".json";
     }
 
     @Override
@@ -32,6 +37,24 @@ public class FileService implements FileGenerator{
     public User getJsonData(int userID) {
         try {
             return objectMapper.readValue(new File(generatePath(userID)), new TypeReference<User>() {});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void generateRegisteredJsonFile(RegisteredUsers registeredUsers) {
+        try {
+            objectMapper.writeValue(new File(this.registeredPath),registeredUsers.getCurrentUsers());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public HashMap<String, Integer> getRegisteredJsonFile() {
+        try {
+            return objectMapper.readValue(new File(this.registeredPath), new TypeReference<HashMap<String, Integer>>() {});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
