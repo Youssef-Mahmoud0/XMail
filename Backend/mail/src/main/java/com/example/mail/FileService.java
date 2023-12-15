@@ -8,29 +8,30 @@ import java.io.IOException;
 
 interface FileGenerator{
     void generateJsonFile(User user);
-    User getJsonData(User user);
+    User getJsonData(int userID);
 }
 
 public class FileService implements FileGenerator{
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private String userPath = "D:\\Rowan's CSE\\Term 5\\OOP\\XMail\\Backend\\mail\\user";
-    public String generatePath(User user){
-        return this.userPath + String.valueOf(user.getUserID())+".json";
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final String userPath = "D:\\Rowan's CSE\\Term 5\\OOP\\XMail\\Backend\\mail\\user";
+    public String generatePath(int userID){
+        return this.userPath + userID +".json";
     }
 
     @Override
     public void generateJsonFile(User user) {
         try {
-            objectMapper.writeValue(new File(generatePath(user)),user);
+            objectMapper.writeValue(new File(generatePath(user.getUserID())),user);
+            user.setFilePath(generatePath(user.getUserID()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public User getJsonData(User user) {
+    public User getJsonData(int userID) {
         try {
-            return objectMapper.readValue(new File(generatePath(user)), new TypeReference<User>() {});
+            return objectMapper.readValue(new File(generatePath(userID)), new TypeReference<User>() {});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

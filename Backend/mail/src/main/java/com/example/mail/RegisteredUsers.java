@@ -1,7 +1,7 @@
 package com.example.mail;
 import java.util.HashMap;
 
-public class registedUsers {
+public class RegisteredUsers {
     private HashMap<String, Integer> currentUsers;
 
     public User addUser(UserDto user){
