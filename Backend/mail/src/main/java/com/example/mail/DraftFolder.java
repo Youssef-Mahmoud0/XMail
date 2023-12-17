@@ -3,21 +3,21 @@ package com.example.mail;
 import java.util.ArrayList;
 
 public class DraftFolder implements MailFolders{
-    private ArrayList<MailParent> draftMails;
+    private ArrayList<Mail> draftMails;
 
 
     @Override
-    public void addMail(MailParent mail) {
+    public void addMail(Mail mail) {
 
     }
 
     @Override
-    public ArrayList<MailParent> getMail() {
+    public ArrayList<Mail> getMail() {
         return null;
     }
 
     @Override
-    public ArrayList<MailParent> deleteMail(MailParent mail) {
+    public ArrayList<Mail> deleteMail(Mail mail) {
         return null;
     }
 }

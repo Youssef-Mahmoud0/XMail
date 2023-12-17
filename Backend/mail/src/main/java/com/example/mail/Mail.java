@@ -2,16 +2,18 @@ package com.example.mail;
 
 import java.util.ArrayList;
 
-public class MailParent {
+public class Mail {
     private String subject;
     private ArrayList <String> to;
+    private ArrayList<String> cc;
+    private ArrayList<String> bcc;
     private String from;
     private String content;
     private ArrayList<String> attachments;
     private String date;
 
-    public MailParent(){}
-    public MailParent(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
+    public Mail(){}
+    public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
         this.subject = subject;
         this.to = to;
         this.from = from;
@@ -33,6 +35,22 @@ public class MailParent {
 
     public void setTo(ArrayList<String> to) {
         this.to = to;
+    }
+
+    public ArrayList<String> getCc() {
+        return cc;
+    }
+
+    public void setCc(ArrayList<String> cc) {
+        this.cc = cc;
+    }
+
+    public ArrayList<String> getBcc() {
+        return bcc;
+    }
+
+    public void setBcc(ArrayList<String> bcc) {
+        this.bcc = bcc;
     }
 
     public String getFrom() {
