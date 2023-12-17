@@ -11,6 +11,7 @@ public class Mail {
     private String content;
     private ArrayList<String> attachments;
     private String date;
+    private int priority;
 
     public Mail(){}
     public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
@@ -83,5 +84,13 @@ public class Mail {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }
