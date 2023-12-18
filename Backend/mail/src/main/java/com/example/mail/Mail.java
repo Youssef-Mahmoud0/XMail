@@ -12,6 +12,7 @@ public class Mail {
     private ArrayList<String> attachments;
     private String date;
     private int priority;
+    private int mailID;
 
     public Mail(){}
     public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
@@ -92,5 +93,13 @@ public class Mail {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getMailID() {
+        return mailID;
+    }
+
+    public void setMailID(int mailID) {
+        this.mailID = mailID;
     }
 }
