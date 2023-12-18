@@ -13,7 +13,11 @@ public class User {
     private InboxFolder inboxFolder;
     private SentFolder sentFolder;
     private DraftFolder draftFolder;
+    private TrashInboxFolder trashInboxFolder;
+    private TrashSentFolder trashSentFolder;
+    private TrashDraftFolder trashDraftFolder;
     private ArrayList<Contact> contacts;
+    private ArrayList<CustomFolder> customFolders;
     public FolderFactory folderFactory = new FolderFactory();
     public User(UserDto user, int id){
         this.email = user.getEmail();
@@ -25,6 +29,11 @@ public class User {
         this.inboxFolder = null;
         this.sentFolder = null;
         this.draftFolder = null;
+        this.trashInboxFolder = null;
+        this.trashSentFolder = null;
+        this.trashDraftFolder = null;
+        this.contacts = null;
+        this.customFolders = null;
     }
     public User(){
         this.inboxFolder = null;
@@ -135,5 +144,52 @@ public class User {
     }
     public void addContact(Contact contact){
         this.contacts.add(contact);
+    }
+
+    public InboxFolder getInboxFolder() {
+        return inboxFolder;
+    }
+
+    public SentFolder getSentFolder() {
+        return sentFolder;
+    }
+
+    public DraftFolder getDraftFolder() {
+        return draftFolder;
+    }
+
+    public TrashInboxFolder getTrashInboxFolder() {
+        return trashInboxFolder;
+    }
+
+    public void setTrashInboxFolder(TrashInboxFolder trashInboxFolder) {
+        this.trashInboxFolder = trashInboxFolder;
+    }
+
+    public TrashSentFolder getTrashSentFolder() {
+        return trashSentFolder;
+    }
+
+    public void setTrashSentFolder(TrashSentFolder trashSentFolder) {
+        this.trashSentFolder = trashSentFolder;
+    }
+
+    public TrashDraftFolder getTrashDraftFolder() {
+        return trashDraftFolder;
+    }
+
+    public void setTrashDraftFolder(TrashDraftFolder trashDraftFolder) {
+        this.trashDraftFolder = trashDraftFolder;
+    }
+
+    public ArrayList<CustomFolder> getCustomFolders() {
+        return customFolders;
+    }
+
+    public void setCustomFolders(ArrayList<CustomFolder> customFolders) {
+        this.customFolders = customFolders;
+    }
+    public void addCustomFolder(CustomFolder customFolder){
+        this.customFolders.add(customFolder);
     }
 }

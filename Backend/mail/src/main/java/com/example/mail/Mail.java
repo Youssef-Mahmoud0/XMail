@@ -23,7 +23,7 @@ public class Mail {
         this.bcc = mailBuilder.getBcc();
         this.content = mailBuilder.getContent();
         this.attachments = mailBuilder.getAttachments();
-        this.date = mailBuilder.getDate();
+        this.date = mailBuilder.getDateAndTime();
         this.priority = mailBuilder.getPriority();
     }
     //    public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
