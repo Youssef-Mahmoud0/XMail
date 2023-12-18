@@ -14,15 +14,26 @@ public class Mail {
     private int priority;
     private int mailID;
 
-    public Mail(){}
-    public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
-        this.subject = subject;
-        this.to = to;
-        this.from = from;
-        this.content = content;
-        this.attachments = attachments;
-        this.date = date;
+    public Mail(MailBuilder mailBuilder){
+        this.mailID = mailBuilder.getMailID();
+        this.to = mailBuilder.getTo();
+        this.subject = mailBuilder.getSubject();
+        this.from = mailBuilder.getFrom();
+        this.cc = mailBuilder.getCc();
+        this.bcc = mailBuilder.getBcc();
+        this.content = mailBuilder.getContent();
+        this.attachments = mailBuilder.getAttachments();
+        this.date = mailBuilder.getDate();
+        this.priority = mailBuilder.getPriority();
     }
+//    public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
+//        this.subject = subject;
+//        this.to = to;
+//        this.from = from;
+//        this.content = content;
+//        this.attachments = attachments;
+//        this.date = date;
+//    }
     public String getSubject() {
         return subject;
     }
