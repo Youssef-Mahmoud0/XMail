@@ -26,7 +26,7 @@ public class Mail {
         this.date = mailBuilder.getDate();
         this.priority = mailBuilder.getPriority();
     }
-//    public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
+    //    public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
 //        this.subject = subject;
 //        this.to = to;
 //        this.from = from;
