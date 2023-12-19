@@ -31,8 +31,8 @@ public class FileService implements FileGenerator{
     @Override
     public void generateJsonFile(User user) {
         try {
-            objectMapper.writeValue(new File(generatePath(user.getUserID())),user);
             user.setFilePath(generatePath(user.getUserID()));
+            objectMapper.writeValue(new File(generatePath(user.getUserID())),user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

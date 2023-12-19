@@ -1,5 +1,7 @@
 package com.example.mail;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class MailBuilder {
@@ -13,6 +15,9 @@ public class MailBuilder {
     private String dateAndTime;
     private int priority;
     private int mailID;
+    private LocalDate localDate;
+    private LocalTime localTime;
+    private String mailType;
 
     public MailBuilder setSubject(String subject) {
         this.subject = subject;
@@ -104,7 +109,32 @@ public class MailBuilder {
         return mailID;
     }
 
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
+    public LocalTime getLocalTime() {
+        return localTime;
+    }
+
+    public void setLocalTime(LocalTime localTime) {
+        this.localTime = localTime;
+    }
+
+    public String getMailType() {
+        return mailType;
+    }
+
+    public void setMailType(String mailType) {
+        this.mailType = mailType;
+    }
+
     public Mail build(){
         return new Mail(this);
     }
+
 }

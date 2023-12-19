@@ -25,4 +25,12 @@ public class Controller {
     public void signOut(){
         service.signOut();
     }
+//    @PostMapping("/addMail")
+//    public void addMail(@RequestBody Mail mail){
+//        MailBuilder mailBuilder = new MailBuilder();
+//        mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID());
+//        if (mail.getAttachments()!=null)
+//            mailBuilder.setAttachments(mail.getAttachments());
+//        Mail newMail = mailBuilder.build();
+//    }
 }

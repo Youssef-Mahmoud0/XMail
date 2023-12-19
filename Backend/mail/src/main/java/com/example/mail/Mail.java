@@ -1,6 +1,10 @@
 package com.example.mail;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Mail {
     private String subject;
@@ -10,9 +14,11 @@ public class Mail {
     private String from;
     private String content;
     private ArrayList<String> attachments;
-    private String date;
     private int priority;
     private int mailID;
+    private LocalDate localDate;
+    private LocalTime localTime;
+    private String mailType;
 
     public Mail(MailBuilder mailBuilder){
         this.mailID = mailBuilder.getMailID();
@@ -23,17 +29,11 @@ public class Mail {
         this.bcc = mailBuilder.getBcc();
         this.content = mailBuilder.getContent();
         this.attachments = mailBuilder.getAttachments();
-        this.date = mailBuilder.getDateAndTime();
         this.priority = mailBuilder.getPriority();
+        this.localDate = mailBuilder.getLocalDate();
+        this.localTime = mailBuilder.getLocalTime();
+        this.mailType = mailBuilder.getMailType();
     }
-    //    public Mail(String subject, ArrayList<String> to, String from, String content, ArrayList<String> attachments, String date){
-//        this.subject = subject;
-//        this.to = to;
-//        this.from = from;
-//        this.content = content;
-//        this.attachments = attachments;
-//        this.date = date;
-//    }
     public String getSubject() {
         return subject;
     }
@@ -90,14 +90,6 @@ public class Mail {
         this.attachments = attachments;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public int getPriority() {
         return priority;
     }
@@ -112,5 +104,29 @@ public class Mail {
 
     public void setMailID(int mailID) {
         this.mailID = mailID;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
+    public LocalTime getLocalTime() {
+        return localTime;
+    }
+
+    public void setLocalTime(LocalTime localTime) {
+        this.localTime = localTime;
+    }
+
+    public String getMailType() {
+        return mailType;
+    }
+
+    public void setMailType(String mailType) {
+        this.mailType = mailType;
     }
 }

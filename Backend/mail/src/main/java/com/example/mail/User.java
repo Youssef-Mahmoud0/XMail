@@ -97,31 +97,34 @@ public class User {
         this.userID = userID;
     }
 
-//    public InboxFolder getInstanceInboxFolder() {
-//        if(this.inboxFolder == null)
-//            return (InboxFolder) folderFactory.createFolder("inbox");
-//        return this.inboxFolder;
-//    }
-//
-//    public void setInboxFolder(InboxFolder inboxFolder) {
-//        this.inboxFolder = inboxFolder;
-//    }
-//
-//    public SentFolder getInstanceSentFolder() {
-//        if(this.sentFolder == null)
-//            return (SentFolder) folderFactory.createFolder("sent");
-//        return this.sentFolder;
-//    }
-//
-//    public void setSentFolder(SentFolder sentFolder) {
-//        this.sentFolder = sentFolder;
-//    }
-//
-//    public DraftFolder getInstanceDraftFolder() {
-//        if (this.draftFolder == null)
-//            return (DraftFolder) folderFactory.createFolder("draft");
-//        return this.draftFolder;
-//    }
+    public InboxFolder getInstanceInboxFolder() {
+        FolderFactory folderFactory = new FolderFactory();
+        if(this.inboxFolder == null)
+            return (InboxFolder) folderFactory.createFolder("inbox");
+        return this.inboxFolder;
+    }
+
+    public void setInboxFolder(InboxFolder inboxFolder) {
+        this.inboxFolder = inboxFolder;
+    }
+
+    public SentFolder getInstanceSentFolder() {
+        FolderFactory folderFactory = new FolderFactory();
+        if(this.sentFolder == null)
+            return (SentFolder) folderFactory.createFolder("sent");
+        return this.sentFolder;
+    }
+
+    public void setSentFolder(SentFolder sentFolder) {
+        this.sentFolder = sentFolder;
+    }
+
+    public DraftFolder getInstanceDraftFolder() {
+        FolderFactory folderFactory = new FolderFactory();
+        if (this.draftFolder == null)
+            return (DraftFolder) folderFactory.createFolder("draft");
+        return this.draftFolder;
+    }
     public void setDraftFolder(DraftFolder draftFolder) {
         this.draftFolder = draftFolder;
     }
