@@ -2,6 +2,7 @@ package com.example.mail;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.paulschwarz.springdotenv.DotenvPropertyLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,9 +17,13 @@ interface FileGenerator{
 
 public class FileService implements FileGenerator{
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final String userPath = "D:\\Rowan's CSE\\Term 5\\OOP\\XMail\\Backend\\mail\\users";
 
-    private final String registeredPath = "D:\\Rowan's CSE\\Term 5\\OOP\\XMail\\Backend\\mail\\users\\RegisteredUsers.json";
+    DotenvPropertyLoader dpl = new DotenvPropertyLoader();
+
+    private final String userPath = (String) dpl.getValue("userPath");
+
+    private final String registeredPath = (String) dpl.getValue("registeredPath");
+
     public String generatePath(int userID){
         return this.userPath +"\\user" +userID +".json";
     }
