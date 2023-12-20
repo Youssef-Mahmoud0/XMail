@@ -29,6 +29,7 @@ public class Controller {
     @PostMapping("/addMail")
     public void addMail(@RequestBody Mail mail){
         service.addMail(mail);
+//        return this.getSentMails();
     }
     @GetMapping("/sentMail")
     public SentFolder getSentMails(){

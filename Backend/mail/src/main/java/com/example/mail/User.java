@@ -129,12 +129,15 @@ public class User {
         this.draftFolder = draftFolder;
     }
     public void addInbox(Mail mail){
+        this.getInboxFolder();
         this.inboxFolder.addMail(mail);
     }
     public void addDraft(Mail mail){
+        this.getDraftFolder();
         this.draftFolder.addMail(mail);
     }
     public void addSent(Mail mail){
+        this.getSentFolder();
         this.sentFolder.addMail(mail);
     }
 

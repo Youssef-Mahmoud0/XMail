@@ -13,7 +13,6 @@ public class MailBuilder {
     private String from;
     private String content;
     private ArrayList<String> attachments;
-    private String dateAndTime;
     private int priority;
     private int mailID;
     private LocalDate localDate;
@@ -53,11 +52,6 @@ public class MailBuilder {
 
     public MailBuilder setAttachments(ArrayList<String> attachments) {
         this.attachments = attachments;
-        return this;
-    }
-
-    public MailBuilder setDateAndTime(String dateAndTime) {
-        this.dateAndTime = dateAndTime;
         return this;
     }
 
@@ -108,10 +102,6 @@ public class MailBuilder {
 
     public ArrayList<String> getAttachments() {
         return attachments;
-    }
-
-    public String getDateAndTime() {
-        return dateAndTime;
     }
 
     public int getPriority() {

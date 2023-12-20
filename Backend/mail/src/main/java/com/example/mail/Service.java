@@ -1,6 +1,7 @@
 package com.example.mail;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 @org.springframework.stereotype.Service
 public class Service {
@@ -44,8 +45,29 @@ public class Service {
         this.currentuser.addSent(newMail);
         System.out.println(this.currentuser.getSentFolder().getMail());
         file.generateJsonFile(currentuser);
+        mail.setTo(null);
+        mail.setFrom(this.currentuser.getEmail());
+        mail.setMailType("inbox");
+        setInbox(mail.getTo(), mail);
     }
     public SentFolder getSent(){
         return this.currentuser.getSentFolder();
+    }
+    public User getUser(String email){
+        int id = registeredUsers.getUserId(email);
+        if (id!=0) {
+            return file.getJsonData(id);
+        }
+        return null;
+    }
+    public void setInbox(ArrayList<String> emails, Mail mail){
+        for(String email:emails) {
+            User user = getUser(email);
+            if (user != null) {
+                user.getInboxFolder();
+                user.addInbox(mail);
+                file.generateJsonFile(user);
+            }
+        }
     }
 }
