@@ -45,7 +45,6 @@ public class Service {
         this.currentuser.addSent(newMail);
         System.out.println(this.currentuser.getSentFolder().getMail());
         file.generateJsonFile(currentuser);
-        mail.setTo(null);
         mail.setFrom(this.currentuser.getEmail());
         mail.setMailType("inbox");
         setInbox(mail.getTo(), mail);
