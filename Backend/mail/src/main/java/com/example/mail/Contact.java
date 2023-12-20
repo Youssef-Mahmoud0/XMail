@@ -8,7 +8,8 @@ public class Contact {
 
     public Contact(String name, ArrayList<String> emails) {
         this.name = name;
-        this.emails = emails;
+        if(emails != null)this.emails = emails;
+        else this.emails = new ArrayList<>();
     }
 
     public String getName() {

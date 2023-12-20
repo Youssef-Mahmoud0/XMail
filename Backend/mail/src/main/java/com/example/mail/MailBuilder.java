@@ -129,6 +129,14 @@ public class MailBuilder {
 //        this.localDate = localDate;
 //    }
 
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = LocalDate.now();
+    }
+
+    public void setLocalTime(LocalTime localTime) {
+        this.localTime = LocalTime.now();
+    }
+
     public LocalTime getLocalTime() {
         return localTime;
     }

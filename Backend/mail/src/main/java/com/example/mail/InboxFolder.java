@@ -18,7 +18,6 @@ public class InboxFolder implements MailFolders{
     public void setInboxMails(ArrayList<Mail> inboxMails) {
         this.inboxMails = inboxMails;
     }
-
     @Override
     public ArrayList<Mail> deleteMail(Mail mail) {
         return this.inboxMails;

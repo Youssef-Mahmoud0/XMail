@@ -8,7 +8,6 @@ public class CustomFolder implements MailFolders{
     public void addMail(Mail mail) {
 
     }
-
     @Override
     public ArrayList<Mail> getMail() {
         return null;

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class SentFolder implements MailFolders{
     private ArrayList<Mail> sentMails;
 
+    public SentFolder(){
+        this.sentMails = new ArrayList<>();
+    }
     @Override
     public void addMail(Mail mail) {
         if(this.sentMails == null)this.sentMails = new ArrayList<Mail>();

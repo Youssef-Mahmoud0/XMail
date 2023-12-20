@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class DraftFolder implements MailFolders{
     private ArrayList<Mail> draftMails;
 
-
     @Override
     public void addMail(Mail mail) {
         if(this.draftMails == null)this.draftMails = new ArrayList<Mail>();
