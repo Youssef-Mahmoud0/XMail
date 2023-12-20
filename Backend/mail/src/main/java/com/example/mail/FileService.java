@@ -2,6 +2,7 @@ package com.example.mail;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import me.paulschwarz.springdotenv.DotenvPropertyLoader;
 
 import java.io.File;
@@ -31,6 +32,7 @@ public class FileService implements FileGenerator{
     @Override
     public void generateJsonFile(User user) {
         try {
+            objectMapper.registerModule(new JavaTimeModule());
             user.setFilePath(generatePath(user.getUserID()));
             objectMapper.writeValue(new File(generatePath(user.getUserID())),user);
         } catch (IOException e) {
@@ -41,6 +43,7 @@ public class FileService implements FileGenerator{
     @Override
     public User getJsonData(int userID) {
         try {
+            objectMapper.registerModule(new JavaTimeModule());
             return objectMapper.readValue(new File(generatePath(userID)), new TypeReference<User>() {});
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -50,6 +53,7 @@ public class FileService implements FileGenerator{
     @Override
     public void generateRegisteredJsonFile(RegisteredUsers registeredUsers) {
         try {
+            objectMapper.registerModule(new JavaTimeModule());
             objectMapper.writeValue(new File(this.registeredPath),registeredUsers.getCurrentUsers());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -59,6 +63,7 @@ public class FileService implements FileGenerator{
     @Override
     public HashMap<String, Integer> getRegisteredJsonFile() {
         try {
+            objectMapper.registerModule(new JavaTimeModule());
             return objectMapper.readValue(new File(this.registeredPath), new TypeReference<HashMap<String, Integer>>() {});
         } catch (IOException e) {
             throw new RuntimeException(e);

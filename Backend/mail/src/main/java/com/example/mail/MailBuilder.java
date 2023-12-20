@@ -1,6 +1,7 @@
 package com.example.mail;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -70,11 +71,11 @@ public class MailBuilder {
         return this;
     }
     public MailBuilder setlocalDate(){
-        this.localDate = LocalDate.now();
+        this.localDate = LocalDateTime.now().toLocalDate();
         return this;
     }
     public MailBuilder setlocalTime(){
-        this.localTime = LocalTime.now();
+        this.localTime = LocalDateTime.now().toLocalTime();
         return this;
     }
     public MailBuilder setMailType(String mailType) {

@@ -35,8 +35,10 @@ public class Service {
         System.out.println("YES YES NEW MAIIIIIIIIIIL !!!!!!!!!!");
         MailBuilder mailBuilder = new MailBuilder();
         mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType()).setlocalDate().setlocalTime();
-        if(mail.getAttachments()!=null)mailBuilder.setAttachments(mail.getAttachments());
-        if(mail.getContent() != null)mailBuilder.setContent(mail.getContent());
+        if(mail.getAttachments()!=null)
+            mailBuilder.setAttachments(mail.getAttachments());
+        if(mail.getContent() != null)
+            mailBuilder.setContent(mail.getContent());
         Mail newMail = mailBuilder.build();
         this.currentuser.getSentFolder();
         this.currentuser.addSent(newMail);
