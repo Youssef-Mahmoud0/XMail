@@ -27,12 +27,33 @@ public class Controller {
     }
 
     @PostMapping("/addMail")
-    public void addMail(@RequestBody Mail mail){
-        service.addMail(mail);
-//        return this.getSentMails();
+    public SentFolder addMail(@RequestBody Mail mail,String email){
+        service.setCurrentUser(service.getUser(email));
+        return service.addMail(mail);
     }
-    @GetMapping("/sentMail")
-    public SentFolder getSentMails(){
-        return service.getSent();
+    @PostMapping("/draftMail")
+    public DraftFolder draftMail(@RequestBody Mail mail,String email){
+        service.setCurrentUser(service.getUser(email));
+        return service.draftMail(mail);
+    }
+    @PostMapping("/trashMail")
+    public TrashFolder trashMail(@RequestBody Mail mail,String email){
+        service.setCurrentUser(service.getUser(email));
+        return service.trashMail(mail);
+    }
+    @GetMapping("/sentFolder")
+    public SentFolder getSentFolder(@RequestBody String email){
+        service.setCurrentUser(service.getUser(email));
+        return service.currentUser.getSentFolder();
+    }
+    @GetMapping("/inboxFolder")
+    public InboxFolder getInboxFolder(@RequestBody String email){
+        service.setCurrentUser(service.getUser(email));
+        return service.currentUser.getInboxFolder();
+    }
+    @GetMapping("/trashFolder")
+    public TrashFolder getTrashFolder(@RequestBody String email){
+        service.setCurrentUser(service.getUser(email));
+        return service.currentUser.getTrashFolder();
     }
 }

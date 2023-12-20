@@ -6,16 +6,16 @@ public class FolderFactory {
             InboxFolder inboxFolder = new InboxFolder();
             return inboxFolder;
         }
-        if(type.equals("sent")){
+        else if(type.equals("sent")){
             SentFolder sentFolder = new SentFolder();
             return sentFolder;
         }
-        if(type.equals("draft")){
+        else if(type.equals("draft")){
             DraftFolder draftFolder = new DraftFolder();
             return draftFolder;
+        } else if(type.equals("trash")) {
+            TrashFolder trashFolder = new TrashFolder();
         }
-        else{
-            return null;
-        }
+        return null;
     }
 }

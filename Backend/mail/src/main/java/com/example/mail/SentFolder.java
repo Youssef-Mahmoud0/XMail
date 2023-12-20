@@ -27,4 +27,5 @@ public class SentFolder implements MailFolders{
     public ArrayList<Mail> deleteMail(Mail mail) {
         return this.sentMails;
     }
+
 }

@@ -13,9 +13,7 @@ public class User {
     private InboxFolder inboxFolder;
     private SentFolder sentFolder;
     private DraftFolder draftFolder;
-    private TrashInboxFolder trashInboxFolder;
-    private TrashSentFolder trashSentFolder;
-    private TrashDraftFolder trashDraftFolder;
+    private TrashFolder trashFolder;
     private ArrayList<Contact> contacts;
     private ArrayList<CustomFolder> customFolders;
 //    public FolderFactory folderFactory = new FolderFactory();
@@ -29,9 +27,7 @@ public class User {
         this.inboxFolder = null;
         this.sentFolder = null;
         this.draftFolder = null;
-        this.trashInboxFolder = null;
-        this.trashSentFolder = null;
-        this.trashDraftFolder = null;
+        this.trashFolder = null;
         this.contacts = null;
         this.customFolders = null;
     }
@@ -140,7 +136,20 @@ public class User {
         this.getSentFolder();
         this.sentFolder.addMail(mail);
     }
+    public void addTrash(Mail mail){
+        this.getTrashFolder();
+        this.trashFolder.addMail(mail);
+    }
+    public TrashFolder getTrashFolder() {
+        FolderFactory folderFactory = new FolderFactory();
+        if (this.trashFolder == null)
+            return (TrashFolder) folderFactory.createFolder("trash");
+        return trashFolder;
+    }
 
+    public void setTrashFolder(TrashFolder trashFolder) {
+        this.trashFolder = trashFolder;
+    }
     public ArrayList<Contact> getContacts() {
         return contacts;
     }
@@ -152,41 +161,6 @@ public class User {
         this.contacts.add(contact);
     }
 
-//    public InboxFolder getInboxFolder() {
-//        return inboxFolder;
-//    }
-//
-//    public SentFolder getSentFolder() {
-//        return sentFolder;
-//    }
-//
-//    public DraftFolder getDraftFolder() {
-//        return draftFolder;
-//    }
-
-    public TrashInboxFolder getTrashInboxFolder() {
-        return trashInboxFolder;
-    }
-
-    public void setTrashInboxFolder(TrashInboxFolder trashInboxFolder) {
-        this.trashInboxFolder = trashInboxFolder;
-    }
-
-    public TrashSentFolder getTrashSentFolder() {
-        return trashSentFolder;
-    }
-
-    public void setTrashSentFolder(TrashSentFolder trashSentFolder) {
-        this.trashSentFolder = trashSentFolder;
-    }
-
-    public TrashDraftFolder getTrashDraftFolder() {
-        return trashDraftFolder;
-    }
-
-    public void setTrashDraftFolder(TrashDraftFolder trashDraftFolder) {
-        this.trashDraftFolder = trashDraftFolder;
-    }
 
     public ArrayList<CustomFolder> getCustomFolders() {
         return customFolders;

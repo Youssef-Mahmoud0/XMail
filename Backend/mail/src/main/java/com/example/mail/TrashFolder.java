@@ -2,7 +2,7 @@ package com.example.mail;
 
 import java.util.ArrayList;
 
-public class TrashInboxFolder implements MailFolders{
+public class TrashFolder implements MailFolders{
     @Override
     public void addMail(Mail mail) {
 
