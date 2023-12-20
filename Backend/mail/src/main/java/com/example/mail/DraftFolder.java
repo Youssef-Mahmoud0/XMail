@@ -8,16 +8,21 @@ public class DraftFolder implements MailFolders{
 
     @Override
     public void addMail(Mail mail) {
-
+        if(this.draftMails == null)this.draftMails = new ArrayList<Mail>();
+        this.draftMails.add(mail);
     }
 
     @Override
     public ArrayList<Mail> getMail() {
-        return null;
+        return this.draftMails;
+    }
+
+    public void setDraftMails(ArrayList<Mail> draftMails) {
+        this.draftMails = draftMails;
     }
 
     @Override
     public ArrayList<Mail> deleteMail(Mail mail) {
-        return null;
+        return this.draftMails;
     }
 }

@@ -97,7 +97,7 @@ public class User {
         this.userID = userID;
     }
 
-    public InboxFolder getInstanceInboxFolder() {
+    public InboxFolder getInboxFolder() {
         FolderFactory folderFactory = new FolderFactory();
         if(this.inboxFolder == null)
             return (InboxFolder) folderFactory.createFolder("inbox");
@@ -108,7 +108,7 @@ public class User {
         this.inboxFolder = inboxFolder;
     }
 
-    public SentFolder getInstanceSentFolder() {
+    public SentFolder getSentFolder() {
         FolderFactory folderFactory = new FolderFactory();
         if(this.sentFolder == null)
             return (SentFolder) folderFactory.createFolder("sent");
@@ -119,7 +119,7 @@ public class User {
         this.sentFolder = sentFolder;
     }
 
-    public DraftFolder getInstanceDraftFolder() {
+    public DraftFolder getDraftFolder() {
         FolderFactory folderFactory = new FolderFactory();
         if (this.draftFolder == null)
             return (DraftFolder) folderFactory.createFolder("draft");
@@ -149,17 +149,17 @@ public class User {
         this.contacts.add(contact);
     }
 
-    public InboxFolder getInboxFolder() {
-        return inboxFolder;
-    }
-
-    public SentFolder getSentFolder() {
-        return sentFolder;
-    }
-
-    public DraftFolder getDraftFolder() {
-        return draftFolder;
-    }
+//    public InboxFolder getInboxFolder() {
+//        return inboxFolder;
+//    }
+//
+//    public SentFolder getSentFolder() {
+//        return sentFolder;
+//    }
+//
+//    public DraftFolder getDraftFolder() {
+//        return draftFolder;
+//    }
 
     public TrashInboxFolder getTrashInboxFolder() {
         return trashInboxFolder;

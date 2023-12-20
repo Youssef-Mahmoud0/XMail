@@ -7,16 +7,21 @@ public class SentFolder implements MailFolders{
 
     @Override
     public void addMail(Mail mail) {
-
+        if(this.sentMails == null)this.sentMails = new ArrayList<Mail>();
+        this.sentMails.add(mail);
     }
 
     @Override
     public ArrayList<Mail> getMail() {
-        return null;
+        return this.sentMails;
+    }
+
+    public void setSentMails(ArrayList<Mail> sentMails) {
+        this.sentMails = sentMails;
     }
 
     @Override
     public ArrayList<Mail> deleteMail(Mail mail) {
-        return null;
+        return this.sentMails;
     }
 }

@@ -19,7 +19,7 @@ public class Mail {
     private LocalDate localDate;
     private LocalTime localTime;
     private String mailType;
-
+    public Mail(){}
     public Mail(MailBuilder mailBuilder){
         this.mailID = mailBuilder.getMailID();
         this.to = mailBuilder.getTo();
