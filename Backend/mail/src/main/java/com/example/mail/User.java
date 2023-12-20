@@ -144,7 +144,7 @@ public class User {
         FolderFactory folderFactory = new FolderFactory();
         if (this.trashFolder == null)
             return (TrashFolder) folderFactory.createFolder("trash");
-        return trashFolder;
+        return this.trashFolder;
     }
 
     public void setTrashFolder(TrashFolder trashFolder) {

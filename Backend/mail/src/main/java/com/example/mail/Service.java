@@ -45,7 +45,7 @@ public class Service {
         this.currentUser.addSent(newMail);
         System.out.println(this.currentUser.getSentFolder().getMail());
         file.generateJsonFile(currentUser);
-        mail.setFrom(this.currentUser.getEmail());
+//        mail.setFrom(this.currentUser.getEmail());
         mail.setMailType("inbox");
         setInbox(mail.getTo(), mail);
         //Coming soon...
@@ -62,22 +62,54 @@ public class Service {
         if(mail.getContent() != null)
             mailBuilder.setContent(mail.getContent());
         Mail newMail = mailBuilder.build();
+        mail.setMailType("draft");
         this.currentUser.getDraftFolder();
         this.currentUser.addDraft(newMail);
+        file.generateJsonFile(currentUser);
+//        mail.setFrom(this.currentUser.getEmail());
         return this.currentUser.getDraftFolder();
     }
     public TrashFolder trashMail(Mail mail){
-        this.currentUser.addTrash(mail);
-        if(mail.getMailType()=="inbox"){
-            int index = this.currentUser.getInboxFolder().getMail().indexOf(mail);
+        System.out.println("TRASH WORKED LESGOOOO");
+        MailBuilder mailBuilder = new MailBuilder();
+        mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType()).setlocalDate().setlocalTime();
+        if(mail.getAttachments()!=null)
+            mailBuilder.setAttachments(mail.getAttachments());
+        if(mail.getContent() != null)
+            mailBuilder.setContent(mail.getContent());
+        Mail newMail = mailBuilder.build();
+        this.currentUser.setTrashFolder(this.currentUser.getTrashFolder());
+        this.currentUser.addTrash(newMail);
+        System.out.println(mail.getMailType());
+        int index = -1;
+        if(mail.getMailType().equals("inbox")){
+            for (Mail mailToFind:this.currentUser.getInboxFolder().getMail()){
+                if (newMail.getMailID()==mailToFind.getMailID()){
+                    index = this.currentUser.getInboxFolder().getMail().indexOf(mailToFind);
+                    break;
+                }
+            }
             this.currentUser.getInboxFolder().getMail().remove(index);
-        } else if (mail.getMailType()=="sent"){
-            int index = this.currentUser.getSentFolder().getMail().indexOf(mail);
+        } else if (mail.getMailType().equals("sent")){
+            for (Mail mailToFind:this.currentUser.getSentFolder().getMail()){
+                if (newMail.getMailID()==mailToFind.getMailID()){
+                    index = this.currentUser.getSentFolder().getMail().indexOf(mailToFind);
+                    break;
+                }
+            }
             this.currentUser.getSentFolder().getMail().remove(index);
-        } else if (mail.getMailType()=="draft") {
-            int index = this.currentUser.getDraftFolder().getMail().indexOf(mail);
+        } else if (mail.getMailType().equals("draft")) {
+            for (Mail mailToFind:this.currentUser.getDraftFolder().getMail()){
+                if (newMail.getMailID()==mailToFind.getMailID()){
+                    index = this.currentUser.getDraftFolder().getMail().indexOf(mailToFind);
+                    break;
+                }
+            }
             this.currentUser.getDraftFolder().getMail().remove(index);
         }
+        else
+            return null;
+        file.generateJsonFile(currentUser);
         return this.currentUser.getTrashFolder();
     }
     public User getUser(String email){

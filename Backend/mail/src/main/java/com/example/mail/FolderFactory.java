@@ -15,6 +15,7 @@ public class FolderFactory {
             return draftFolder;
         } else if(type.equals("trash")) {
             TrashFolder trashFolder = new TrashFolder();
+            return trashFolder;
         }
         return null;
     }
