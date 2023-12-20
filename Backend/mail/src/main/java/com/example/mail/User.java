@@ -97,21 +97,23 @@ public class User {
         this.userID = userID;
     }
 
-    public InboxFolder getInstanceInboxFolder() {
-        FolderFactory folderFactory = new FolderFactory();
-        if(this.inboxFolder == null)
+    public InboxFolder getInboxFolder() {
+        if(this.inboxFolder == null){
+            FolderFactory folderFactory = new FolderFactory();
             return (InboxFolder) folderFactory.createFolder("inbox");
+        }
         return this.inboxFolder;
     }
 
-    public void setInboxFolder(InboxFolder inboxFolder) {
-        this.inboxFolder = inboxFolder;
-    }
+//    public void setInboxFolder(InboxFolder inboxFolder) {
+//        this.inboxFolder = inboxFolder;
+//    }
 
-    public SentFolder getInstanceSentFolder() {
-        FolderFactory folderFactory = new FolderFactory();
-        if(this.sentFolder == null)
+    public SentFolder getSentFolder() {
+        if(this.sentFolder == null){
+            FolderFactory folderFactory = new FolderFactory();
             return (SentFolder) folderFactory.createFolder("sent");
+        }
         return this.sentFolder;
     }
 
@@ -119,15 +121,16 @@ public class User {
         this.sentFolder = sentFolder;
     }
 
-    public DraftFolder getInstanceDraftFolder() {
-        FolderFactory folderFactory = new FolderFactory();
-        if (this.draftFolder == null)
+    public DraftFolder getDraftFolder() {
+        if (this.draftFolder == null){
+            FolderFactory folderFactory = new FolderFactory();
             return (DraftFolder) folderFactory.createFolder("draft");
+        }
         return this.draftFolder;
     }
-    public void setDraftFolder(DraftFolder draftFolder) {
-        this.draftFolder = draftFolder;
-    }
+//    public void setDraftFolder(DraftFolder draftFolder) {
+//        this.draftFolder = draftFolder;
+//    }
     public void addInbox(Mail mail){
         this.inboxFolder.addMail(mail);
     }
@@ -149,17 +152,17 @@ public class User {
         this.contacts.add(contact);
     }
 
-    public InboxFolder getInboxFolder() {
-        return inboxFolder;
-    }
+//    public InboxFolder getInboxFolder() {
+//        return inboxFolder;
+//    }
 
-    public SentFolder getSentFolder() {
-        return sentFolder;
-    }
-
-    public DraftFolder getDraftFolder() {
-        return draftFolder;
-    }
+//    public SentFolder getSentFolder() {
+//        return sentFolder;
+//    }
+//
+//    public DraftFolder getDraftFolder() {
+//        return draftFolder;
+//    }
 
     public TrashInboxFolder getTrashInboxFolder() {
         return trashInboxFolder;
@@ -194,5 +197,26 @@ public class User {
     }
     public void addCustomFolder(CustomFolder customFolder){
         this.customFolders.add(customFolder);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob='" + dob + '\'' +
+                ", userID=" + userID +
+                ", filePath='" + filePath + '\'' +
+                ", inboxFolder=" + inboxFolder +
+                ", sentFolder=" + sentFolder +
+                ", draftFolder=" + draftFolder +
+                ", trashInboxFolder=" + trashInboxFolder +
+                ", trashSentFolder=" + trashSentFolder +
+                ", trashDraftFolder=" + trashDraftFolder +
+                ", contacts=" + contacts +
+                ", customFolders=" + customFolders +
+                '}';
     }
 }

@@ -13,6 +13,7 @@ public class Service {
         User newUser = registeredUsers.addUser(user);
         if(newUser != null){
             file.generateJsonFile(newUser);
+            System.out.println(newUser);
         }
         this.currentuser = newUser;
         return newUser;
