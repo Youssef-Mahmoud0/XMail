@@ -1,8 +1,9 @@
 package com.example.mail;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SentFolder implements MailFolders{
+public class SentFolder implements MailFolders, Serializable {
     private ArrayList<Mail> sentMails;
 
     public SentFolder(){

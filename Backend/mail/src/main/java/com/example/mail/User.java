@@ -1,8 +1,9 @@
 package com.example.mail;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
     private String email;
     private String password;
     private String firstName;
@@ -32,9 +33,7 @@ public class User {
         this.customFolders = null;
     }
     public User(){
-        this.inboxFolder = null;
-        this.sentFolder = null;
-        this.draftFolder = null;
+
     }
 
     public String getEmail() {

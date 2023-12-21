@@ -1,9 +1,15 @@
 package com.example.mail;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class InboxFolder implements MailFolders{
+public class InboxFolder implements MailFolders, Serializable {
     private ArrayList<Mail> inboxMails;
+
+    public InboxFolder() {
+        this.inboxMails = new ArrayList<>();
+    }
+
     @Override
     public void addMail(Mail mail) {
         if(this.inboxMails == null)this.inboxMails = new ArrayList<Mail>();
