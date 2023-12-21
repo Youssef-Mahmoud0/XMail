@@ -13,7 +13,7 @@ public class Mail {
     private ArrayList<String> bcc;
     private String from;
     private String content;
-    private ArrayList<String> attachments;
+    private ArrayList<attachment> attachments;
     private int priority;
     private int mailID;
     private LocalDate localDate;
@@ -82,11 +82,11 @@ public class Mail {
         this.content = content;
     }
 
-    public ArrayList<String> getAttachments() {
+    public ArrayList<attachment> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(ArrayList<String> attachments) {
+    public void setAttachments(ArrayList<attachment> attachments) {
         this.attachments = attachments;
     }
 

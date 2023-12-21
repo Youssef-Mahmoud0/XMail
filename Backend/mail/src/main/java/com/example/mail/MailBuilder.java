@@ -12,7 +12,7 @@ public class MailBuilder {
     private ArrayList<String> bcc;
     private String from;
     private String content;
-    private ArrayList<String> attachments;
+    private ArrayList<attachment> attachments;
     private int priority;
     private int mailID;
     private LocalDate localDate;
@@ -50,7 +50,7 @@ public class MailBuilder {
         return this;
     }
 
-    public MailBuilder setAttachments(ArrayList<String> attachments) {
+    public MailBuilder setAttachments(ArrayList<attachment> attachments) {
         this.attachments = attachments;
         return this;
     }
@@ -100,7 +100,7 @@ public class MailBuilder {
         return content;
     }
 
-    public ArrayList<String> getAttachments() {
+    public ArrayList<attachment> getAttachments() {
         return attachments;
     }
 
