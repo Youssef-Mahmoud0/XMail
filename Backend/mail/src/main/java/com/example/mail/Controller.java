@@ -47,17 +47,17 @@ public class Controller {
         service.setCurrentUser(service.getUser(mail.getFrom()));
         return service.trashMail(mail);
     }
-    @GetMapping("/sentFolder")
+    @PostMapping("/sentFolder")
     public SentFolder getSentFolder(@RequestBody String email){
         service.setCurrentUser(service.getUser(email));
         return service.currentUser.getSentFolder();
     }
-    @GetMapping("/inboxFolder")
+    @PostMapping("/inboxFolder")
     public InboxFolder getInboxFolder(@RequestBody String email){
         service.setCurrentUser(service.getUser(email));
         return service.currentUser.getInboxFolder();
     }
-    @GetMapping("/trashFolder")
+    @PostMapping("/trashFolder")
     public TrashFolder getTrashFolder(@RequestBody String email){
         service.setCurrentUser(service.getUser(email));
         return service.currentUser.getTrashFolder();
