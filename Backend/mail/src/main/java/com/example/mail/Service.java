@@ -9,25 +9,26 @@ public class Service {
     private final RegisteredUsers registeredUsers = new RegisteredUsers();
     private final FileService file = new FileService();
 
-    public User signUp(UserDto user) throws NoSuchAlgorithmException {
+    public boolean signUp(UserDto user) throws NoSuchAlgorithmException {
         user.setPassword(Hashing.hashingPassword(user.getPassword()));
         User newUser = registeredUsers.addUser(user);
         if(newUser != null){
             file.generateJsonFile(newUser);
         }
-        this.currentUser = newUser;
-        return newUser;
+//        this.currentUser = newUser;
+        return this.currentUser != null;
+//        return newUser;
     }
-    public User signIn(UserDto user) throws NoSuchAlgorithmException {
+    public boolean signIn(UserDto user) throws NoSuchAlgorithmException {
         int id = registeredUsers.getUserId(user.getEmail());
         if (id!=0) {
             User newUser = file.getJsonData(id);
             if(Hashing.hashingPassword(user.getPassword()).equals(newUser.getPassword())) {
                 this.currentUser = newUser;
-                return newUser;
+                return true;
             }
         }
-        return new User();
+        return false;
     }
     public void signOut(){
         this.currentUser = null;
