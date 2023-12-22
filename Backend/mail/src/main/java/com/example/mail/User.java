@@ -17,6 +17,7 @@ public class User implements Serializable {
     private TrashFolder trashFolder;
     private ArrayList<Contact> contacts;
     private ArrayList<CustomFolder> customFolders;
+    private int globalMailNumber;
 //    public FolderFactory folderFactory = new FolderFactory();
     public User(UserDto user, int id){
         this.email = user.getEmail();
@@ -78,6 +79,15 @@ public class User implements Serializable {
 
     public String getFilePath() {
         return filePath;
+    }
+
+    public int getGlobalMailNumber() {
+        globalMailNumber++;
+        return globalMailNumber;
+    }
+
+    public void setGlobalMailNumber(int globalMailNumber) {
+        this.globalMailNumber = globalMailNumber;
     }
 
     public void setFilePath(String filePath) {
