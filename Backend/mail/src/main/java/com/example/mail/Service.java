@@ -36,6 +36,7 @@ public class Service {
         System.out.println("YES YES NEW MAIIIIIIIIIIL !!!!!!!!!!");
         MailBuilder mailBuilder = new MailBuilder();
         mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType()).setlocalDate().setlocalTime();
+        mailBuilder.setPriority(mail.getPriority()).setPriority(mail.getPriority()).setFrom(mail.getFrom());
         if(mail.getAttachments()!=null)
             mailBuilder.setAttachments(mail.getAttachments());
         if(mail.getContent() != null)
@@ -57,6 +58,7 @@ public class Service {
         System.out.println("Drafted hehe");
         MailBuilder mailBuilder = new MailBuilder();
         mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType()).setlocalDate().setlocalTime();
+        mailBuilder.setPriority(mail.getPriority()).setPriority(mail.getPriority()).setFrom(mail.getFrom());
         if(mail.getAttachments()!=null)
             mailBuilder.setAttachments(mail.getAttachments());
         if(mail.getContent() != null)
@@ -73,6 +75,7 @@ public class Service {
         System.out.println("TRASH WORKED LESGOOOO");
         MailBuilder mailBuilder = new MailBuilder();
         mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType()).setlocalDate().setlocalTime();
+        mailBuilder.setPriority(mail.getPriority()).setPriority(mail.getPriority()).setFrom(mail.getFrom());
         if(mail.getAttachments()!=null)
             mailBuilder.setAttachments(mail.getAttachments());
         if(mail.getContent() != null)

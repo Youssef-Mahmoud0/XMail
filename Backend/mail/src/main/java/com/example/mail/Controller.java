@@ -36,6 +36,12 @@ public class Controller {
         service.setCurrentUser(service.getUser(mail.getFrom()));
         return service.draftMail(mail);
     }
+//    what to return??
+//    @PostMapping("/postDraft")
+//    public DraftFolder draftMail(@RequestBody Mail mail){
+//        service.setCurrentUser(service.getUser(mail.getFrom()));
+//        return service.draftMail(mail);
+//    }
     @PostMapping("/trashMail")
     public TrashFolder trashMail(@RequestBody Mail mail){
         service.setCurrentUser(service.getUser(mail.getFrom()));
