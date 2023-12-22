@@ -2,7 +2,7 @@ package com.example.mail;
 
 import java.util.ArrayList;
 
-public class systemDto {
+public class SystemDto {
     private String email;
     private ArrayList<String> mails;
     private Contact contact;

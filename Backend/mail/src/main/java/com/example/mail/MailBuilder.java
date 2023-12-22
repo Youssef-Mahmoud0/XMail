@@ -1,11 +1,12 @@
 package com.example.mail;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class MailBuilder {
+public class MailBuilder implements Serializable {
     private String subject;
     private ArrayList<String> to;
     private ArrayList<String> cc;
@@ -64,12 +65,20 @@ public class MailBuilder {
         this.mailID = mailID;
         return this;
     }
-    public MailBuilder setlocalDate(){
+    public MailBuilder setLocalDate(){
         this.localDate = LocalDateTime.now().toLocalDate();
         return this;
     }
-    public MailBuilder setlocalTime(){
+    public MailBuilder setLocalTime(){
         this.localTime = LocalDateTime.now().toLocalTime();
+        return this;
+    }
+    public MailBuilder setOldLocalDate(LocalDate localDate){
+        this.localDate = localDate;
+        return this;
+    }
+    public MailBuilder setOldLocalTime(LocalTime localTime){
+        this.localTime = localTime;
         return this;
     }
     public MailBuilder setMailType(String mailType) {

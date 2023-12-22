@@ -1,12 +1,13 @@
 package com.example.mail;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Mail {
+public class Mail implements Serializable {
     private String subject;
     private ArrayList <String> to;
     private ArrayList<String> cc;

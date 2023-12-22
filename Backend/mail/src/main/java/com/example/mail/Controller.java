@@ -42,9 +42,15 @@ public class Controller {
 //        service.setCurrentUser(service.getUser(mail.getFrom()));
 //        return service.draftMail(mail);
 //    }
+
+//    @PostMapping("/trashMail")
+//    public TrashFolder trashMail(@RequestBody SystemDto systemDto){
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+//        return service.trashMail(systemDto.getMail());
+//    }
     @PostMapping("/trashMail")
     public TrashFolder trashMail(@RequestBody Mail mail){
-        service.setCurrentUser(service.getUser(mail.getFrom()));
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
         return service.trashMail(mail);
     }
     @PostMapping("/sentFolder")
@@ -62,4 +68,24 @@ public class Controller {
         service.setCurrentUser(service.getUser(email));
         return service.currentUser.getTrashFolder();
     }
+    @PostMapping("/restoreTrash")
+    public TrashFolder restoreFromTrash(@RequestBody Mail mail){
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.restoreFromTrash(mail);
+    }
+    @PostMapping("deleteTrash")
+    public TrashFolder deleteFromTrash(@RequestBody Mail mail){
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.deleteFromTrash(mail);
+    }
+//    @PostMapping("/restoreTrash")
+//    public TrashFolder restoreFromTrash(@RequestBody SystemDto systemDto){
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+//        return service.restoreFromTrash(systemDto.getMail());
+//    }
+//    @PostMapping("deleteTrash")
+//    public TrashFolder deleteFromTrash(@RequestBody SystemDto systemDto){
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+//        return service.deleteFromTrash(systemDto.getMail());
+//    }
 }

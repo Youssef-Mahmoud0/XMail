@@ -82,8 +82,7 @@ public class User implements Serializable {
     }
 
     public int getGlobalMailNumber() {
-        globalMailNumber++;
-        return globalMailNumber;
+        return globalMailNumber++;
     }
 
     public void setGlobalMailNumber(int globalMailNumber) {
