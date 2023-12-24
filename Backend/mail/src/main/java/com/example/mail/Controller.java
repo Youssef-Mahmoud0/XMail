@@ -13,7 +13,7 @@ public class Controller {
     Service service = new Service();
 
     @PostMapping("/getUser")
-    public User getUser(String email){
+    public User getUser(@RequestBody String email){
         service.setCurrentUser(service.getUser(email));
         return service.getUser(email);
     }
@@ -32,7 +32,7 @@ public class Controller {
     }
 
     @PostMapping("/addMail")
-    public SentFolder addMail(@RequestBody Mail mail){
+    public SystemDto addMail(@RequestBody Mail mail){
         service.setCurrentUser(service.getUser(mail.getFrom()));
         return service.addMail(mail);
     }
@@ -54,9 +54,19 @@ public class Controller {
 //        return service.trashMail(systemDto.getMail());
 //    }
     @PostMapping("/trashMail")
-    public TrashFolder trashMail(@RequestBody Mail mail){
-//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
-        return service.trashMail(mail);
+    public SystemDto trashMail(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.trashMail(systemDto.getSourceMails(),systemDto.getSource());
+    }
+    @PostMapping("/restoreTrash")
+    public User restoreFromTrash(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.restoreFromTrash(systemDto.getSourceMails());
+    }
+    @PostMapping("deleteTrash")
+    public TrashFolder deleteFromTrash(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.deleteFromTrash(systemDto.getSourceMails());
     }
     @PostMapping("/sentFolder")
     public SentFolder getSentFolder(@RequestBody String email){
@@ -72,16 +82,6 @@ public class Controller {
     public TrashFolder getTrashFolder(@RequestBody String email){
         service.setCurrentUser(service.getUser(email));
         return service.currentUser.getTrashFolder();
-    }
-    @PostMapping("/restoreTrash")
-    public TrashFolder restoreFromTrash(@RequestBody Mail mail){
-//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
-        return service.restoreFromTrash(mail);
-    }
-    @PostMapping("deleteTrash")
-    public TrashFolder deleteFromTrash(@RequestBody Mail mail){
-//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
-        return service.deleteFromTrash(mail);
     }
 //    @PostMapping("/restoreTrash")
 //    public TrashFolder restoreFromTrash(@RequestBody SystemDto systemDto){
