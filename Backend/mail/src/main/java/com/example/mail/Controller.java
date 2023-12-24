@@ -12,7 +12,7 @@ public class Controller {
     @Autowired
     Service service = new Service();
 
-    @GetMapping("/getUser")
+    @PostMapping("/getUser")
     public User getUser(String email){
         service.setCurrentUser(service.getUser(email));
         return service.getUser(email);
