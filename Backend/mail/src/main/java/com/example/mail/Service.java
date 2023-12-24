@@ -20,8 +20,8 @@ public class Service {
             file.generateJsonFile(newUser);
         }
 //        this.currentUser = newUser;
-        return this.currentUser != null;
-//        return newUser;
+//        return this.currentUser != null;
+        return newUser!=null;
     }
     public boolean signIn(UserDto user) throws NoSuchAlgorithmException {
         int id = registeredUsers.getUserId(user.getEmail());

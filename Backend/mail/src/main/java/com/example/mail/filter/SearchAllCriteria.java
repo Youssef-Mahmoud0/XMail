@@ -51,12 +51,13 @@ public class SearchAllCriteria {
                         filteredMails.add(mail);
                         break;
                     }
-                } else if (key.equals("date")) {
-                    if (criteriaDate.matches(mail,hashMap.get(key))){
-                        filteredMails.add(mail);
-                        break;
-                    }
                 }
+//                else if (key.equals("date")) {
+//                    if (criteriaDate.matches(mail,hashMap.get(key))){
+//                        filteredMails.add(mail);
+//                        break;
+//                    }
+//                }
             }
         }
         return filteredMails;
