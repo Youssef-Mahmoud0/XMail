@@ -5,6 +5,9 @@ import com.example.mail.Mail;
 import java.util.ArrayList;
 
 public class CriteriaFrom implements Criteria{
+    public CriteriaFrom() {
+    }
+
     @Override
     public ArrayList<Mail> meetCriteria(ArrayList<Mail> mails, String filter) {
         ArrayList<Mail> filteredMails = new ArrayList<>();
@@ -13,5 +16,10 @@ public class CriteriaFrom implements Criteria{
                 filteredMails.add(mail);
         }
         return filteredMails;
+    }
+
+    @Override
+    public Boolean matches(Mail mail, String filter) {
+        return mail.getFrom().toLowerCase().contains(filter.toLowerCase());
     }
 }

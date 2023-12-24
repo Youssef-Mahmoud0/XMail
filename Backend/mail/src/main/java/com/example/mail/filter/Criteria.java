@@ -6,4 +6,5 @@ import java.util.ArrayList;
 
 public interface Criteria {
     public ArrayList<Mail> meetCriteria(ArrayList<Mail> mails, String filter);
+    public Boolean matches(Mail mail,String filter);
 }

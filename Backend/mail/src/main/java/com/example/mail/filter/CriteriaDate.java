@@ -7,6 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class CriteriaDate implements Criteria{
+    public CriteriaDate() {
+    }
+
     @Override
     public ArrayList<Mail> meetCriteria(ArrayList<Mail> mails, String filter) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -17,5 +20,12 @@ public class CriteriaDate implements Criteria{
                 filteredMails.add(mail);
         }
         return filteredMails;
+    }
+
+    @Override
+    public Boolean matches(Mail mail, String filter) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(filter,formatter);
+        return mail.getLocalDate().equals(localDate);
     }
 }
