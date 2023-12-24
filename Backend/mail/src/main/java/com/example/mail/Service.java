@@ -62,7 +62,7 @@ public class Service {
     public DraftFolder draftMail(Mail mail){
         System.out.println("Drafted hehe");
         System.out.println(mail.getMailID());
-        if(mail.getMailID() != 0){
+        if(mail.getMailID() != -1){
             //                    int index = this.currentUser.getDraftFolder().getMail().indexOf(draft);
             this.currentUser.getDraftFolder().getMail().removeIf(draft -> draft.getMailID() == mail.getMailID());
         }

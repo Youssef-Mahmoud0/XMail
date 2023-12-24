@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class SystemDto {
     private String email;
-    private ArrayList<Mail> mails;
+    private ArrayList<Mail> sourceMails;
+    private ArrayList<Mail> destinationMails;
     private Contact contact;
     private Mail mail;
     private String source;
@@ -18,12 +19,20 @@ public class SystemDto {
         this.email = email;
     }
 
-    public ArrayList<Mail> getMails() {
-        return mails;
+    public ArrayList<Mail> getSourceMails() {
+        return sourceMails;
     }
 
-    public void setMails(ArrayList<Mail> mails) {
-        this.mails = mails;
+    public void setSourceMails(ArrayList<Mail> sourceMails) {
+        this.sourceMails = sourceMails;
+    }
+
+    public ArrayList<Mail> getDestinationMails() {
+        return destinationMails;
+    }
+
+    public void setDestinationMails(ArrayList<Mail> destinationMails) {
+        this.destinationMails = destinationMails;
     }
 
     public Contact getContact() {
