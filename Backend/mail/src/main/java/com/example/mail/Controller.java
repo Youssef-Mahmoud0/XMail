@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/")
@@ -82,6 +83,16 @@ public class Controller {
     public TrashFolder getTrashFolder(@RequestBody String email){
         service.setCurrentUser(service.getUser(email));
         return service.currentUser.getTrashFolder();
+    }
+    @PostMapping("/search")
+    public ArrayList<Mail> search(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.search(systemDto.getHashMap(), systemDto.getSourceMails());
+    }
+    @PostMapping("/filter")
+    public ArrayList<Mail> filter(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.filter(systemDto.getHashMap(), systemDto.getSourceMails());
     }
 //    @PostMapping("/restoreTrash")
 //    public TrashFolder restoreFromTrash(@RequestBody SystemDto systemDto){

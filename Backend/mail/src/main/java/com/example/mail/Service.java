@@ -1,7 +1,11 @@
 package com.example.mail;
 
+import com.example.mail.filter.AndCriteria;
+import com.example.mail.filter.SearchAllCriteria;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @org.springframework.stereotype.Service
 public class Service {
@@ -186,4 +190,13 @@ public class Service {
 //        this.addMail(mail);
 //        return this.currentUser.getDraftFolder();
     }
+    public ArrayList<Mail> search(HashMap<String,String> hashMap, ArrayList<Mail> mails){
+        SearchAllCriteria searchAllCriteria = new SearchAllCriteria();
+        return searchAllCriteria.matchesCriteria(mails, hashMap);
+    }
+    public ArrayList<Mail> filter(HashMap<String,String> hashMap, ArrayList<Mail> mails){
+        AndCriteria andCriteria = new AndCriteria();
+        return andCriteria.meetCriteria(mails, hashMap);
+    }
+
 }

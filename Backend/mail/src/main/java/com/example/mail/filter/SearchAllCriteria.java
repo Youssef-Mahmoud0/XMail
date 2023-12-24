@@ -22,37 +22,37 @@ public class SearchAllCriteria {
         this.criteriaYear = new CriteriaYear();
     }
 
-    public ArrayList<Mail> matchesCriteria(ArrayList<Mail>mails, HashMap<String,String>hashMap, String filter){
+    public ArrayList<Mail> matchesCriteria(ArrayList<Mail>mails, HashMap<String,String>hashMap){
         ArrayList<Mail> filteredMails = new ArrayList<>();
         for (Mail mail: mails){
             for (String key : hashMap.keySet()) {
                 if (key.equals("content")){
-                    if (criteriaContent.matches(mail,filter)){
+                    if (criteriaContent.matches(mail,hashMap.get(key))){
                         filteredMails.add(mail);
                         break;
                     }
                 } else if (key.equals("subject")) {
-                    if (criteriaSubject.matches(mail,filter)){
+                    if (criteriaSubject.matches(mail,hashMap.get(key))){
                         filteredMails.add(mail);
                         break;
                     }
                 } else if (key.equals("from")) {
-                    if (criteriaFrom.matches(mail,filter)){
+                    if (criteriaFrom.matches(mail,hashMap.get(key))){
                         filteredMails.add(mail);
                         break;
                     }
                 } else if (key.equals("to")) {
-                    if (criteriaTo.matches(mail,filter)){
+                    if (criteriaTo.matches(mail,hashMap.get(key))){
                         filteredMails.add(mail);
                         break;
                     }
                 } else if (key.equals("year")) {
-                    if (criteriaYear.matches(mail,filter)){
+                    if (criteriaYear.matches(mail,hashMap.get(key))){
                         filteredMails.add(mail);
                         break;
                     }
                 } else if (key.equals("date")) {
-                    if (criteriaDate.matches(mail,filter)){
+                    if (criteriaDate.matches(mail,hashMap.get(key))){
                         filteredMails.add(mail);
                         break;
                     }

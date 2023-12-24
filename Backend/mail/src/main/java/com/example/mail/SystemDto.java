@@ -1,6 +1,7 @@
 package com.example.mail;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SystemDto {
     private String email;
@@ -10,6 +11,15 @@ public class SystemDto {
     private Mail mail;
     private String source;
     private String destination;
+    private HashMap<String,String> hashMap;
+
+    public HashMap<String, String> getHashMap() {
+        return hashMap;
+    }
+
+    public void setHashMap(HashMap<String, String> hashMap) {
+        this.hashMap = hashMap;
+    }
 
     public String getEmail() {
         return email;
