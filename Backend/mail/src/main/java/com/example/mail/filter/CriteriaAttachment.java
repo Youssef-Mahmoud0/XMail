@@ -14,8 +14,10 @@ public class CriteriaAttachment implements Criteria{
         ArrayList<Mail> filteredMails = new ArrayList<>();
         for (Mail mail:mails){
             for (Attachment attachment : mail.getAttachments()){
-                if (attachment.getName().toLowerCase().contains(filter.toLowerCase()))
+                if (attachment.getName().toLowerCase().contains(filter.toLowerCase())){
                     filteredMails.add(mail);
+                    break;
+                }
             }
         }
         return filteredMails;

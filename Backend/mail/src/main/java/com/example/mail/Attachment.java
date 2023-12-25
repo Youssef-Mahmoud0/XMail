@@ -5,6 +5,12 @@ public class Attachment {
     private String content;
     private long  size;
 
+    public Attachment() {
+//        this.name = name;
+//        this.content = content;
+//        this.size = size;
+    }
+
     public String getName() {
         return name;
     }

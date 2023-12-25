@@ -110,7 +110,7 @@ public class MailBuilder implements Serializable {
     }
 
     public ArrayList<Attachment> getAttachments() {
-        return Attachments;
+        return new ArrayList<>();
     }
 
     public int getPriority() {

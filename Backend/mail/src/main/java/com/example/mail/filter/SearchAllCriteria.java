@@ -59,12 +59,13 @@ public class SearchAllCriteria {
                         filteredMails.add(mail);
                         break;
                     }
-                } else if (key.equals("attachmentName")) {
-                    if (criteriaAttachment.matches(mail,hashMap.get(key))){
-                        filteredMails.add(mail);
-                        break;
-                    }
                 }
+//                else if (key.equals("attachmentName")) {
+//                    if (criteriaAttachment.matches(mail,hashMap.get(key))){
+//                        filteredMails.add(mail);
+//                        break;
+//                    }
+//                }
             }
         }
         return filteredMails;
