@@ -137,6 +137,8 @@ public class Service {
                 }
             }
         }
+        System.out.println(this.currentUser.getInboxFolder().getMail());
+        System.out.println(systemDto.getSourceMails());
         systemDto.setDestinationMails(this.currentUser.getTrashFolder().getMail());
         file.generateJsonFile(currentUser);
         return systemDto;
@@ -206,6 +208,7 @@ public class Service {
             User user = getUser(email);
             if (user != null) {
                 user.getInboxFolder();
+                mail.setMailID(user.getGlobalMailNumber());
                 user.addInbox(mail);
                 file.generateJsonFile(user);
             }
