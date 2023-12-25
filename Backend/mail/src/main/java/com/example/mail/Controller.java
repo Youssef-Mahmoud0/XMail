@@ -57,7 +57,8 @@ public class Controller {
     @PostMapping("/trashMail")
     public SystemDto trashMail(@RequestBody SystemDto systemDto){
         service.setCurrentUser(service.getUser(systemDto.getEmail()));
-        return service.trashMail(systemDto.getSourceMails(),systemDto.getSource());
+        if(systemDto.getSource().equals("trash"))return service.deleteFromTrash(systemDto.getSourceMails());
+        else return service.trashMail(systemDto.getSourceMails(),systemDto.getSource());
     }
     @PostMapping("/restoreTrash")
     public User restoreFromTrash(@RequestBody SystemDto systemDto){
