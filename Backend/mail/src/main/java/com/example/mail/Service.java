@@ -188,7 +188,10 @@ public class Service {
         SystemDto systemDto = new SystemDto();
         systemDto.setDestinationMails(this.currentUser.getTrashFolder().getMail());
         systemDto.setSourceMails(this.currentUser.getTrashFolder().getMail());
+        System.out.println(this.currentUser.getTrashFolder().getMail());
 //        return this.currentUser.getTrashFolder();
+        System.out.println("Delete From Trash");
+        file.generateJsonFile(this.currentUser);
         return systemDto;
     }
     public User getUser(String email){
