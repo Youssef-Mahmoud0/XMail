@@ -17,6 +17,9 @@ public class FolderFactory {
             TrashFolder trashFolder = new TrashFolder();
             return trashFolder;
         }
-        return null;
+        else{
+            CustomFolder customFolder = new CustomFolder("defaultName");
+            return customFolder;
+        }
     }
 }

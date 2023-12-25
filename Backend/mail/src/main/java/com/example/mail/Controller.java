@@ -64,11 +64,11 @@ public class Controller {
         service.setCurrentUser(service.getUser(systemDto.getEmail()));
         return service.restoreFromTrash(systemDto.getSourceMails());
     }
-    @PostMapping("deleteTrash")
-    public TrashFolder deleteFromTrash(@RequestBody SystemDto systemDto){
-        service.setCurrentUser(service.getUser(systemDto.getEmail()));
-        return service.deleteFromTrash(systemDto.getSourceMails());
-    }
+//    @PostMapping("deleteTrash")
+//    public TrashFolder deleteFromTrash(@RequestBody SystemDto systemDto){
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+//        return service.deleteFromTrash(systemDto.getSourceMails());
+//    }
     @PostMapping("/sentFolder")
     public SentFolder getSentFolder(@RequestBody String email){
         service.setCurrentUser(service.getUser(email));
@@ -93,6 +93,57 @@ public class Controller {
     public ArrayList<Mail> filter(@RequestBody SystemDto systemDto){
         service.setCurrentUser(service.getUser(systemDto.getEmail()));
         return service.filter(systemDto.getHashMap(), systemDto.getSourceMails());
+    }
+    @PostMapping("/addContact")
+    public ArrayList<Contact> addContact(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.addContact(systemDto.getContact());
+    }
+    @PostMapping("/editContact")
+    public ArrayList<Contact> editContact(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.editContact(systemDto);
+    }
+    @PostMapping("/deleteContact")
+    public ArrayList<Contact> deleteContact(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.deleteContact(systemDto);
+    }
+    //only need email of current user and source = search written bas
+    @PostMapping("/searchContacts")
+    public ArrayList<Contact> searchContacts(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.searchContacts(systemDto);
+    }
+    @PostMapping("sortContacts")
+    public ArrayList<Contact> sortContacts(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.sortContacts();
+    }
+    /*
+
+        CUSTOM FOLDERS
+
+    */
+    @PostMapping("/createFolder")
+    public ArrayList<CustomFolder> createFolder(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.createCustomFolder(systemDto.getSource());
+    }
+    @PostMapping("/renameFolder")
+    public ArrayList<CustomFolder> renameFolder(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.renameFolder(systemDto.getSource(), systemDto.getDestination());
+    }
+    @PostMapping("/removeFolder")
+    public ArrayList<CustomFolder> removeFolder(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.removeFolder(systemDto.getSource());
+    }
+    @PostMapping("/moveToFolder")
+    public ArrayList<CustomFolder> moveToFolder(@RequestBody SystemDto systemDto){
+        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        return service.addToCustom(systemDto.getDestination(), systemDto.getSourceMails());
     }
 //    @PostMapping("/restoreTrash")
 //    public TrashFolder restoreFromTrash(@RequestBody SystemDto systemDto){

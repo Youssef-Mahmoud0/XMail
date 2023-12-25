@@ -13,6 +13,9 @@ public class Contact {
         else
             this.emails = new ArrayList<>();
     }
+    public Contact(){
+
+    }
 
     public String getName() {
         return name;
@@ -23,6 +26,8 @@ public class Contact {
     }
 
     public ArrayList<String> getEmails() {
+        if (this.emails == null)
+            return new ArrayList<>();
         return emails;
     }
 
@@ -30,6 +35,7 @@ public class Contact {
         this.emails = emails;
     }
     public void addEmail(String email){
+        this.getEmails();
         this.emails.add(email);
     }
 

@@ -18,7 +18,7 @@ public class User implements Serializable {
     private ArrayList<Contact> contacts;
     private ArrayList<CustomFolder> customFolders;
     private int globalMailNumber;
-//    public FolderFactory folderFactory = new FolderFactory();
+    //    public FolderFactory folderFactory = new FolderFactory();
     public User(UserDto user, int id){
         this.email = user.getEmail();
         this.password = user.getPassword();
@@ -185,5 +185,12 @@ public class User implements Serializable {
     public void addCustomFolder(CustomFolder customFolder){
         this.getCustomFolders();
         this.customFolders.add(customFolder);
+    }
+    public void createCustomFolder(String folderName){
+        this.getCustomFolders();
+        FolderFactory folderFactory = new FolderFactory();
+        CustomFolder customFolder = (CustomFolder) folderFactory.createFolder(folderName);
+        customFolder.setFolderName(folderName);
+        this.addCustomFolder(customFolder);
     }
 }
