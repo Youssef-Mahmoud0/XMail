@@ -159,18 +159,23 @@ public class User implements Serializable {
         this.trashFolder = trashFolder;
     }
     public ArrayList<Contact> getContacts() {
-        return contacts;
+        if (this.contacts == null)
+            return new ArrayList<>();
+        return this.contacts;
     }
 
     public void setContacts(ArrayList<Contact> contacts) {
         this.contacts = contacts;
     }
     public void addContact(Contact contact){
+        this.getContacts();
         this.contacts.add(contact);
     }
 
 
     public ArrayList<CustomFolder> getCustomFolders() {
+        if (this.customFolders == null)
+            return new ArrayList<>();
         return customFolders;
     }
 
@@ -178,6 +183,7 @@ public class User implements Serializable {
         this.customFolders = customFolders;
     }
     public void addCustomFolder(CustomFolder customFolder){
+        this.getCustomFolders();
         this.customFolders.add(customFolder);
     }
 }
