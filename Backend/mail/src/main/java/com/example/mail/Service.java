@@ -187,6 +187,7 @@ public class Service {
         }
         SystemDto systemDto = new SystemDto();
         systemDto.setDestinationMails(this.currentUser.getTrashFolder().getMail());
+        systemDto.setSourceMails(this.currentUser.getTrashFolder().getMail());
 //        return this.currentUser.getTrashFolder();
         return systemDto;
     }
