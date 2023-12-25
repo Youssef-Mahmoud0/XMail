@@ -13,6 +13,7 @@ public class AndCriteria implements CompositeCriteria{
     private CriteriaTo criteriaTo;
     private CriteriaYear criteriaYear;
     private CriteriaPriority criteriaPriority;
+    private CriteriaAttachment criteriaAttachment;
 
     public AndCriteria() {
         this.criteriaContent = new CriteriaContent();
@@ -22,6 +23,7 @@ public class AndCriteria implements CompositeCriteria{
         this.criteriaTo = new CriteriaTo();
         this.criteriaYear = new CriteriaYear();
         this.criteriaPriority = new CriteriaPriority();
+        this.criteriaAttachment = new CriteriaAttachment();
     }
 
     @Override
@@ -43,6 +45,8 @@ public class AndCriteria implements CompositeCriteria{
                     filteredMails = criteriaDate.meetCriteria(filteredMails,hashMap.get(key));
                 } else if (key.equals("priority")&& hashMap.get(key)!=null && hashMap.get(key)!="") {
                     filteredMails = criteriaPriority.meetCriteria(filteredMails,hashMap.get(key));
+                }  else if (key.equals("attachmentName")&& hashMap.get(key)!=null && hashMap.get(key)!="") {
+                    filteredMails = criteriaAttachment.meetCriteria(filteredMails,hashMap.get(key));
                 }
             }
         }

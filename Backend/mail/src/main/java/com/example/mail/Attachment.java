@@ -1,6 +1,6 @@
 package com.example.mail;
 
-public class attachment {
+public class Attachment {
     private String name;
     private String content;
     private long  size;

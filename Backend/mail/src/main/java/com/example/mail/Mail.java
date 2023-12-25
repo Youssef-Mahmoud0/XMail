@@ -2,10 +2,8 @@ package com.example.mail;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Mail implements Serializable {
     private String subject;
@@ -14,7 +12,7 @@ public class Mail implements Serializable {
     private ArrayList<String> bcc;
     private String from;
     private String content;
-    private ArrayList<attachment> attachments;
+    private ArrayList<Attachment> Attachments;
     private int priority;
     private int mailID;
     private LocalDate localDate;
@@ -29,7 +27,7 @@ public class Mail implements Serializable {
         this.cc = mailBuilder.getCc();
         this.bcc = mailBuilder.getBcc();
         this.content = mailBuilder.getContent();
-        this.attachments = mailBuilder.getAttachments();
+        this.Attachments = mailBuilder.getAttachments();
         this.priority = mailBuilder.getPriority();
         this.localDate = mailBuilder.getLocalDate();
         this.localTime = mailBuilder.getLocalTime();
@@ -83,12 +81,12 @@ public class Mail implements Serializable {
         this.content = content;
     }
 
-    public ArrayList<attachment> getAttachments() {
-        return attachments;
+    public ArrayList<Attachment> getAttachments() {
+        return Attachments;
     }
 
-    public void setAttachments(ArrayList<attachment> attachments) {
-        this.attachments = attachments;
+    public void setAttachments(ArrayList<Attachment> Attachments) {
+        this.Attachments = Attachments;
     }
 
     public int getPriority() {

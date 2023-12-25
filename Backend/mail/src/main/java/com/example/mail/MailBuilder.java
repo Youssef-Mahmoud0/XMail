@@ -13,7 +13,7 @@ public class MailBuilder implements Serializable {
     private ArrayList<String> bcc;
     private String from;
     private String content;
-    private ArrayList<attachment> attachments;
+    private ArrayList<Attachment> Attachments;
     private int priority;
     private int mailID;
     private LocalDate localDate;
@@ -51,8 +51,8 @@ public class MailBuilder implements Serializable {
         return this;
     }
 
-    public MailBuilder setAttachments(ArrayList<attachment> attachments) {
-        this.attachments = attachments;
+    public MailBuilder setAttachments(ArrayList<Attachment> Attachments) {
+        this.Attachments = Attachments;
         return this;
     }
 
@@ -109,8 +109,8 @@ public class MailBuilder implements Serializable {
         return content;
     }
 
-    public ArrayList<attachment> getAttachments() {
-        return attachments;
+    public ArrayList<Attachment> getAttachments() {
+        return Attachments;
     }
 
     public int getPriority() {

@@ -12,6 +12,7 @@ public class SearchAllCriteria {
     private CriteriaSubject criteriaSubject;
     private CriteriaTo criteriaTo;
     private CriteriaYear criteriaYear;
+    private CriteriaAttachment criteriaAttachment;
 
     public SearchAllCriteria() {
         this.criteriaContent = new CriteriaContent();
@@ -20,6 +21,7 @@ public class SearchAllCriteria {
         this.criteriaSubject = new CriteriaSubject();
         this.criteriaTo = new CriteriaTo();
         this.criteriaYear = new CriteriaYear();
+        this.criteriaAttachment = new CriteriaAttachment();
     }
 
     public ArrayList<Mail> matchesCriteria(ArrayList<Mail>mails, HashMap<String,String>hashMap){
@@ -52,12 +54,17 @@ public class SearchAllCriteria {
                         break;
                     }
                 }
-//                else if (key.equals("date")) {
-//                    if (criteriaDate.matches(mail,hashMap.get(key))){
-//                        filteredMails.add(mail);
-//                        break;
-//                    }
-//                }
+                else if (key.equals("date")) {
+                    if (criteriaDate.matches(mail,hashMap.get(key))){
+                        filteredMails.add(mail);
+                        break;
+                    }
+                } else if (key.equals("attachmentName")) {
+                    if (criteriaAttachment.matches(mail,hashMap.get(key))){
+                        filteredMails.add(mail);
+                        break;
+                    }
+                }
             }
         }
         return filteredMails;
