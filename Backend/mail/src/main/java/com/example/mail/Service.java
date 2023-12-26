@@ -304,12 +304,19 @@ public class Service {
         if(mails.get(0).getMailType().equals("draft")) {
             systemDto.setSourceMails(this.currentUser.getDraftFolder().getMail());
         }
-        for(CustomFolder folder:this.currentUser.getCustomFolders()){
-            if(folder.getFolderName().equals(mails.get(0).getMailType())){
-                System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES folders done");
-                systemDto.setSourceMails(folder.getMail());
-                System.out.println(systemDto.getSourceMails());
+        else{
+            for(CustomFolder folder: this.currentUser.getCustomFolders()) {
+                if (folder.getFolderName().equals(mails.get(0).getMailType())) {
+                    System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES folders done");
+                    systemDto.setSourceMails(folder.getMail());
+                    System.out.println(systemDto.getSourceMails());
+                }
             }
+        }
+        if(systemDto.getSourceMails() == null){
+            systemDto.setSourceMails(new ArrayList<Mail>());
+        }
+        for(CustomFolder folder:this.currentUser.getCustomFolders()){
             if(folder.getFolderName().equals(folderName)){
                 for(Mail mail:mails){
                     this.bulkMove(mail);
