@@ -71,6 +71,7 @@ public class Service {
         //Coming soon...
 //        setInbox(mail.getCc(),mail);
 //        setInbox(mail.getBcc(),mail);
+        this.sortUserArrays();
         SystemDto systemDto = new SystemDto();
         systemDto.setSourceMails(this.currentUser.getSentFolder().getMail());
         systemDto.setDestinationMails(this.currentUser.getDraftFolder().getMail());
@@ -94,6 +95,7 @@ public class Service {
         mail.setMailType("draft");
         this.currentUser.getDraftFolder();
         this.currentUser.addDraft(newMail);
+        this.sortUserArrays();
         file.generateJsonFile(currentUser);
 //        mail.setFrom(this.currentUser.getEmail());
         return this.currentUser.getDraftFolder();
@@ -147,6 +149,7 @@ public class Service {
         }
         System.out.println(this.currentUser.getInboxFolder().getMail());
         System.out.println(systemDto.getSourceMails());
+        this.sortUserArrays();
         systemDto.setDestinationMails(this.currentUser.getTrashFolder().getMail());
         file.generateJsonFile(currentUser);
         return systemDto;
@@ -180,6 +183,7 @@ public class Service {
             }
             this.currentUser.getTrashFolder().getMail().removeIf(trashMail -> trashMail.getMailID() == newMail.getMailID());
         }
+        this.sortUserArrays();
         file.generateJsonFile(this.currentUser);
         return this.currentUser;
     }
@@ -206,7 +210,13 @@ public class Service {
         file.generateJsonFile(this.currentUser);
         return systemDto;
     }
+    public void sortUserArrays(){
+        (this.currentUser.getDraftFolder().getMail()).sort(Comparator.comparing(Mail::getMailID).reversed());
+        (this.currentUser.getInboxFolder().getMail()).sort(Comparator.comparing(Mail::getMailID).reversed());
+        (this.currentUser.getSentFolder().getMail()).sort(Comparator.comparing(Mail::getMailID).reversed());
+    }
     public void checktrash(){
+        Collections.reverse(this.currentUser.getTrashFolder().getMail());
         this.currentUser.getTrashFolder().getMail().removeIf(mail -> {
             return mail.getLocalDate().isBefore(LocalDate.now().minusDays(30)) || mail.getLocalDate().isEqual(LocalDate.now().minusDays(30));
         });
@@ -221,6 +231,7 @@ public class Service {
 //            });
 //            file.generateJsonFile(user);
             this.checktrash();
+            this.sortUserArrays();
             return this.currentUser;
         }
         return null;
