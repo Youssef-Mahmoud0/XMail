@@ -3,6 +3,10 @@ package com.example.mail;
 import com.example.mail.filter.AndCriteria;
 import com.example.mail.filter.ContactCriteria;
 import com.example.mail.filter.SearchAllCriteria;
+import com.example.mail.proxy.Xmail;
+import com.example.mail.proxy.proxyXmail;
+import com.example.mail.sortStrategy.SortStrategy;
+import com.example.mail.sortStrategy.SortStrategyFactory;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -16,14 +20,16 @@ public class Service {
     private final RegisteredUsers registeredUsers = new RegisteredUsers();
     private final FileService file = new FileService();
 
+    private Xmail xmail = new proxyXmail();
+
     public boolean signUp(UserDto user) throws NoSuchAlgorithmException {
         user.setPassword(Hashing.hashingPassword(user.getPassword()));
         User newUser = registeredUsers.addUser(user);
         if(newUser != null){
             file.generateJsonFile(newUser);
+            this.currentUser = newUser;
+            this.xmail.signIn(user.getEmail());
         }
-//        this.currentUser = newUser;
-//        return this.currentUser != null;
         return newUser!=null;
     }
     public boolean signIn(UserDto user) throws NoSuchAlgorithmException {
@@ -31,13 +37,15 @@ public class Service {
         if (id!=0) {
             User newUser = file.getJsonData(id);
             if(Hashing.hashingPassword(user.getPassword()).equals(newUser.getPassword())) {
+                this.xmail.signIn(newUser.getEmail());
                 this.currentUser = newUser;
                 return true;
             }
         }
         return false;
     }
-    public void signOut(){
+    public void signOut(String email){
+        this.xmail.signedOut(email);
         this.currentUser = null;
     }
     public SystemDto addMail(Mail mail){
@@ -215,8 +223,11 @@ public class Service {
         }
     }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
+    public boolean setCurrentUser(User currentUser) {
+        System.out.println(currentUser.getEmail());
+        this.currentUser = this.xmail.checkeUser(currentUser.getEmail());
+        System.out.println(this.currentUser);
+        return this.currentUser != null;
     }
     public void sendDraft(Mail mail){
         //                int index = this.currentUser.getDraftFolder().getMail().indexOf(draft);
@@ -321,12 +332,14 @@ public class Service {
         ContactCriteria contactCriteria = new ContactCriteria();
         return contactCriteria.meetCriteria(this.currentUser.getContacts(),systemDto.getSource());
     }
-//    public int compare(Contact contact1, Contact contact2) {
-//        return contact2.getName().compareTo(contact1.getName());
-//    }
     public ArrayList<Contact> sortContacts(){
         ArrayList<Contact> sortedContacts = new ArrayList<>(this.currentUser.getContacts());
         Collections.sort(sortedContacts, Comparator.comparing(Contact::getName));
         return sortedContacts;
+    }
+    public ArrayList<Mail>defaultOrPriority(SystemDto systemDto){
+        SortStrategyFactory sortStrategyFactory = new SortStrategyFactory();
+        SortStrategy sortStrategy = sortStrategyFactory.createStrategy(systemDto.getDestination());
+        return sortStrategy.sort(systemDto.getSourceMails());
     }
 }
