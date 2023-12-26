@@ -52,7 +52,7 @@ public class Controller {
 //        return service.draftMail(mail);
 //    }
 
-    //    @PostMapping("/trashMail")
+//    @PostMapping("/trashMail")
 //    public TrashFolder trashMail(@RequestBody SystemDto systemDto){
 //        service.setCurrentUser(service.getUser(systemDto.getEmail()));
 //        return service.trashMail(systemDto.getMail());
@@ -70,7 +70,7 @@ public class Controller {
         if(!service.setCurrentUser(service.getUser(systemDto.getEmail())))return null;
         return service.restoreFromTrash(systemDto.getSourceMails());
     }
-    //    @PostMapping("deleteTrash")
+//    @PostMapping("deleteTrash")
 //    public TrashFolder deleteFromTrash(@RequestBody SystemDto systemDto){
 //        service.setCurrentUser(service.getUser(systemDto.getEmail()));
 //        return service.deleteFromTrash(systemDto.getSourceMails());
@@ -160,25 +160,9 @@ public class Controller {
         return service.removeFolder(systemDto.getSource());
     }
     @PostMapping("/moveToFolder")
-    public ArrayList<CustomFolder> moveToFolder(@RequestBody SystemDto systemDto){
+    public SystemDto moveToFolder(@RequestBody SystemDto systemDto){
         //        service.setCurrentUser(service.getUser(systemDto.getEmail()));
         if(!service.setCurrentUser(service.getUser(systemDto.getEmail())))return null;
         return service.addToCustom(systemDto.getDestination(), systemDto.getSourceMails());
     }
-    @PostMapping("/defaultOrPriority")
-    public ArrayList<Mail> defaultOrPriority(@RequestBody SystemDto systemDto){
-//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
-        if(!service.setCurrentUser(service.getUser(systemDto.getEmail())))return null;
-        return service.defaultOrPriority(systemDto);
-    }
-//    @PostMapping("/restoreTrash")
-//    public TrashFolder restoreFromTrash(@RequestBody SystemDto systemDto){
-//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
-//        return service.restoreFromTrash(systemDto.getMail());
-//    }
-//    @PostMapping("deleteTrash")
-//    public TrashFolder deleteFromTrash(@RequestBody SystemDto systemDto){
-//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
-//        return service.deleteFromTrash(systemDto.getMail());
-//    }
 }

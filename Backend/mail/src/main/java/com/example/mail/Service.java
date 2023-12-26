@@ -5,8 +5,6 @@ import com.example.mail.filter.ContactCriteria;
 import com.example.mail.filter.SearchAllCriteria;
 import com.example.mail.proxy.Xmail;
 import com.example.mail.proxy.proxyXmail;
-import com.example.mail.sortStrategy.SortStrategy;
-import com.example.mail.sortStrategy.SortStrategyFactory;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -267,21 +265,39 @@ public class Service {
             }
         }
     }
-    public ArrayList<CustomFolder> addToCustom(String folderName, ArrayList<Mail> mails){
+    public SystemDto addToCustom(String folderName, ArrayList<Mail> mails){
 //        ArrayList<CustomFolder> customFolders = this.currentUser.getCustomFolders();
+        SystemDto systemDto = new SystemDto();
+        if(mails.get(0).getMailType().equals("inbox")) {
+            systemDto.setSourceMails(this.currentUser.getInboxFolder().getMail());
+        }
+        if(mails.get(0).getMailType().equals("sent")) {
+            systemDto.setSourceMails(this.currentUser.getSentFolder().getMail());
+        }
+        if(mails.get(0).getMailType().equals("draft")) {
+            systemDto.setSourceMails(this.currentUser.getDraftFolder().getMail());
+        }
         for(CustomFolder folder:this.currentUser.getCustomFolders()){
+            if(folder.getFolderName().equals(mails.get(0).getMailType())){
+                System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES folders done");
+                systemDto.setSourceMails(folder.getMail());
+                System.out.println(systemDto.getSourceMails());
+            }
             if(folder.getFolderName().equals(folderName)){
                 for(Mail mail:mails){
                     this.bulkMove(mail);
                     mail.setMailType(folderName);
+                    mail.setMailID(this.currentUser.getGlobalMailNumber());
                     folder.addMail(mail);
                 }
+                systemDto.setDestinationMails(folder.getMail());
                 break;
             }
         }
         this.currentUser.setCustomFolders(this.currentUser.getCustomFolders());
         this.file.generateJsonFile(this.currentUser);
-        return this.currentUser.getCustomFolders();
+        return systemDto;
+//        return this.currentUser.getCustomFolders();
     }
     public ArrayList<CustomFolder> removeFolder(String folderName){
         this.currentUser.getCustomFolders().removeIf(folder -> folder.getFolderName().equals(folderName));
@@ -332,14 +348,12 @@ public class Service {
         ContactCriteria contactCriteria = new ContactCriteria();
         return contactCriteria.meetCriteria(this.currentUser.getContacts(),systemDto.getSource());
     }
+//    public int compare(Contact contact1, Contact contact2) {
+//        return contact2.getName().compareTo(contact1.getName());
+//    }
     public ArrayList<Contact> sortContacts(){
         ArrayList<Contact> sortedContacts = new ArrayList<>(this.currentUser.getContacts());
         Collections.sort(sortedContacts, Comparator.comparing(Contact::getName));
         return sortedContacts;
-    }
-    public ArrayList<Mail>defaultOrPriority(SystemDto systemDto){
-        SortStrategyFactory sortStrategyFactory = new SortStrategyFactory();
-        SortStrategy sortStrategy = sortStrategyFactory.createStrategy(systemDto.getDestination());
-        return sortStrategy.sort(systemDto.getSourceMails());
     }
 }

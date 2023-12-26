@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Mail implements Serializable, Comparable {
+public class Mail implements Serializable {
     private String subject;
     private ArrayList <String> to;
     private ArrayList<String> cc;
@@ -127,11 +127,5 @@ public class Mail implements Serializable, Comparable {
 
     public void setMailType(String mailType) {
         this.mailType = mailType;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Mail mail = (Mail) o;
-        return Integer.compare(this.priority,mail.getPriority());
     }
 }
