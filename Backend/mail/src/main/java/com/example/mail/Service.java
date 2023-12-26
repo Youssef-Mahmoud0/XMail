@@ -7,6 +7,7 @@ import com.example.mail.proxy.Xmail;
 import com.example.mail.proxy.proxyXmail;
 
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -99,6 +100,7 @@ public class Service {
     }
     public SystemDto trashMail(ArrayList<Mail> mails, String source){
         SystemDto systemDto = new SystemDto();
+        this.checktrash();
         for (Mail mail : mails){
             System.out.println("TRASH WORKED LESGOOOO");
             MailBuilder mailBuilder = new MailBuilder();
@@ -150,6 +152,7 @@ public class Service {
         return systemDto;
     }
     public User restoreFromTrash(ArrayList<Mail> mails){
+        this.checktrash();
         for (Mail mail : mails){
             MailBuilder mailBuilder = new MailBuilder();
             mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType());
@@ -181,6 +184,7 @@ public class Service {
         return this.currentUser;
     }
     public SystemDto deleteFromTrash(ArrayList<Mail> mails){
+        this.checktrash();
         for (Mail mail : mails){
             MailBuilder mailBuilder = new MailBuilder();
             mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType());
@@ -202,10 +206,22 @@ public class Service {
         file.generateJsonFile(this.currentUser);
         return systemDto;
     }
+    public void checktrash(){
+        this.currentUser.getTrashFolder().getMail().removeIf(mail -> {
+            return mail.getLocalDate().isBefore(LocalDate.now().minusDays(30)) || mail.getLocalDate().isEqual(LocalDate.now().minusDays(30));
+        });
+        file.generateJsonFile(this.currentUser);
+    }
     public User getUser(String email){
         int id = registeredUsers.getUserId(email);
         if (id!=0) {
-            return file.getJsonData(id);
+            this.currentUser = file.getJsonData(id);
+//            user.getTrashFolder().getMail().removeIf(mail -> {
+//                return mail.getLocalDate().isEqual(LocalDate.now().minusDays(30));
+//            });
+//            file.generateJsonFile(user);
+            this.checktrash();
+            return this.currentUser;
         }
         return null;
     }
