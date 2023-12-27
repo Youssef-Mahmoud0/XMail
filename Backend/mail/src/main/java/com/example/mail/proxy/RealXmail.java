@@ -4,9 +4,7 @@ import com.example.mail.FileService;
 import com.example.mail.RegisteredUsers;
 import com.example.mail.User;
 
-import java.sql.SQLOutput;
-
-public class realXmail implements Xmail {
+public class RealXmail implements Xmail {
 //    RegisteredUsers registeredUsers = new RegisteredUsers();
     @Override
     public User checkeUser(String email){

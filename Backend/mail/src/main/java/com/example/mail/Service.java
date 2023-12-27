@@ -4,7 +4,9 @@ import com.example.mail.filter.AndCriteria;
 import com.example.mail.filter.ContactCriteria;
 import com.example.mail.filter.SearchAllCriteria;
 import com.example.mail.proxy.Xmail;
-import com.example.mail.proxy.proxyXmail;
+import com.example.mail.proxy.ProxyXmail;
+import com.example.mail.sortStrategy.SortStrategy;
+import com.example.mail.sortStrategy.SortStrategyFactory;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
@@ -19,7 +21,7 @@ public class Service {
     private final RegisteredUsers registeredUsers = new RegisteredUsers();
     private final FileService file = new FileService();
 
-    private Xmail xmail = new proxyXmail();
+    private Xmail xmail = new ProxyXmail();
 
     public boolean signUp(UserDto user) throws NoSuchAlgorithmException {
         user.setPassword(Hashing.hashingPassword(user.getPassword()));
@@ -105,7 +107,7 @@ public class Service {
     }
     public SystemDto trashMail(ArrayList<Mail> mails, String source){
         SystemDto systemDto = new SystemDto();
-        this.checktrash();
+        this.checkTrash();
         for (Mail mail : mails){
             System.out.println("TRASH WORKED LESGOOOO");
             MailBuilder mailBuilder = new MailBuilder();
@@ -158,7 +160,7 @@ public class Service {
         return systemDto;
     }
     public User restoreFromTrash(ArrayList<Mail> mails){
-        this.checktrash();
+        this.checkTrash();
         for (Mail mail : mails){
             MailBuilder mailBuilder = new MailBuilder();
             mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType());
@@ -191,7 +193,7 @@ public class Service {
         return this.currentUser;
     }
     public SystemDto deleteFromTrash(ArrayList<Mail> mails){
-        this.checktrash();
+        this.checkTrash();
         for (Mail mail : mails){
             MailBuilder mailBuilder = new MailBuilder();
             mailBuilder.setTo(mail.getTo()).setMailID(mail.getMailID()).setMailType(mail.getMailType());
@@ -218,7 +220,7 @@ public class Service {
         (this.currentUser.getInboxFolder().getMail()).sort(Comparator.comparing(Mail::getMailID).reversed());
         (this.currentUser.getSentFolder().getMail()).sort(Comparator.comparing(Mail::getMailID).reversed());
     }
-    public void checktrash(){
+    public void checkTrash(){
         Collections.reverse(this.currentUser.getTrashFolder().getMail());
         this.currentUser.getTrashFolder().getMail().removeIf(mail -> {
             return mail.getLocalDate().isBefore(LocalDate.now().minusDays(30)) || mail.getLocalDate().isEqual(LocalDate.now().minusDays(30));
@@ -233,7 +235,7 @@ public class Service {
 //                return mail.getLocalDate().isEqual(LocalDate.now().minusDays(30));
 //            });
 //            file.generateJsonFile(user);
-            this.checktrash();
+            this.checkTrash();
             this.sortUserArrays();
             return this.currentUser;
         }
@@ -393,5 +395,10 @@ public class Service {
         ArrayList<Contact> sortedContacts = new ArrayList<>(this.currentUser.getContacts());
         Collections.sort(sortedContacts, Comparator.comparing(Contact::getName));
         return sortedContacts;
+    }
+    public ArrayList<Mail>defaultOrPriority(SystemDto systemDto){
+        SortStrategyFactory sortStrategyFactory = new SortStrategyFactory();
+        SortStrategy sortStrategy = sortStrategyFactory.createStrategy(systemDto.getDestination());
+        return sortStrategy.sort(systemDto.getSourceMails());
     }
 }

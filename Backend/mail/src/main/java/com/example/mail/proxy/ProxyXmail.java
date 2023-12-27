@@ -3,8 +3,8 @@ import com.example.mail.User;
 
 import java.util.ArrayList;
 
-public class proxyXmail implements Xmail {
-    Xmail xmail = new realXmail();
+public class ProxyXmail implements Xmail {
+    Xmail xmail = new RealXmail();
     ArrayList<String> signedInUsers = new ArrayList<>();
     @Override
     public User checkeUser(String email){

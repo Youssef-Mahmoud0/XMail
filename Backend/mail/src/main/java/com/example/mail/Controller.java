@@ -165,4 +165,10 @@ public class Controller {
         if(!service.setCurrentUser(service.getUser(systemDto.getEmail())))return null;
         return service.addToCustom(systemDto.getDestination(), systemDto.getSourceMails());
     }
+    @PostMapping("/defaultOrPriority")
+    public ArrayList<Mail> defaultOrPriority(@RequestBody SystemDto systemDto){
+//        service.setCurrentUser(service.getUser(systemDto.getEmail()));
+        if(!service.setCurrentUser(service.getUser(systemDto.getEmail())))return null;
+        return service.defaultOrPriority(systemDto);
+    }
 }
