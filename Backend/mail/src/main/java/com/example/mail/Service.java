@@ -56,8 +56,11 @@ public class Service {
         MailBuilder mailBuilder = new MailBuilder();
         mailBuilder.setTo(mail.getTo()).setMailID(this.currentUser.getGlobalMailNumber()).setMailType(mail.getMailType()).setLocalDate().setLocalTime();
         mailBuilder.setPriority(mail.getPriority()).setPriority(mail.getPriority()).setFrom(mail.getFrom()).setSubject(mail.getSubject());
-        if(mail.getAttachments()!=null)
+        if(mail.getAttachments()!=null) {
             mailBuilder.setAttachments(mail.getAttachments());
+            System.out.println("aaa"+mailBuilder.getAttachments());
+            System.out.println("attachments "+mail.getAttachments());
+        }
         if(mail.getContent() != null)
             mailBuilder.setContent(mail.getContent());
         Mail newMail = mailBuilder.build();

@@ -48,11 +48,15 @@ public class MailBuilder implements Serializable {
 
     public MailBuilder setContent(String content) {
         this.content = content;
+        if(this.content == null)this.content = "";
         return this;
     }
 
     public MailBuilder setAttachments(ArrayList<Attachment> Attachments) {
         this.Attachments = Attachments;
+        if(this.Attachments == null)
+            this.Attachments = new ArrayList<>();
+        System.out.println("HEllo from builder Attachements" + this.Attachments);
         return this;
     }
 
@@ -110,7 +114,7 @@ public class MailBuilder implements Serializable {
     }
 
     public ArrayList<Attachment> getAttachments() {
-        return new ArrayList<>();
+        return this.Attachments;
     }
 
     public int getPriority() {
