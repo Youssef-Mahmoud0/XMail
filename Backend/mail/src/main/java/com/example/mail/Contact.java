@@ -2,7 +2,7 @@ package com.example.mail;
 
 import java.util.ArrayList;
 
-public class Contact {
+public class Contact implements Comparable<Contact>{
     private String name;
     ArrayList <String> emails;
 
@@ -38,5 +38,8 @@ public class Contact {
         this.getEmails();
         this.emails.add(email);
     }
-
+    @Override
+    public int compareTo(Contact other) {
+        return this.name.compareTo(other.getName());
+    }
 }
