@@ -398,7 +398,7 @@ public class Service {
     }
     public ArrayList<Mail>defaultOrPriority(SystemDto systemDto){
         SortStrategyFactory sortStrategyFactory = new SortStrategyFactory();
-        SortStrategy sortStrategy = sortStrategyFactory.createStrategy(systemDto.getDestination());
+        SortStrategy sortStrategy = sortStrategyFactory.createStrategy(systemDto.getSource());
         return sortStrategy.sort(systemDto.getSourceMails());
     }
 }
