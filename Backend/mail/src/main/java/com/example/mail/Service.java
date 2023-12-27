@@ -10,6 +10,7 @@ import com.example.mail.sortStrategy.SortStrategyFactory;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -72,6 +73,8 @@ public class Service {
         file.generateJsonFile(currentUser);
 //        mail.setFrom(this.currentUser.getEmail());
         mail.setMailType("inbox");
+        mail.setLocalDate(LocalDate.now());
+        mail.setLocalTime(LocalTime.now());
         setInbox(mail.getTo(), mail);
         //Coming soon...
 //        setInbox(mail.getCc(),mail);
