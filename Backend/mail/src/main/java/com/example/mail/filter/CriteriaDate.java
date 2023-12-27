@@ -12,11 +12,11 @@ public class CriteriaDate implements Criteria{
 
     @Override
     public ArrayList<Mail> meetCriteria(ArrayList<Mail> mails, String filter) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         ArrayList<Mail> filteredMails = new ArrayList<>();
         for (Mail mail:mails){
             LocalDate localDate = mail.getLocalDate();
-            String result = localDate.format(formatter);
+            String result = localDate.toString();
             if (result.equals(filter))
                 filteredMails.add(mail);
         }
@@ -25,9 +25,9 @@ public class CriteriaDate implements Criteria{
 
     @Override
     public Boolean matches(Mail mail, String filter) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate localDate = mail.getLocalDate();
-        String result = localDate.format(formatter);
+        String result = localDate.toString();
         return result.equals(filter);
     }
 }
