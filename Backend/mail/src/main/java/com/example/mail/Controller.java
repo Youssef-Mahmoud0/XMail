@@ -134,7 +134,7 @@ public class Controller {
     public ArrayList<Contact> sortContacts(@RequestBody SystemDto systemDto){
         //        service.setCurrentUser(service.getUser(systemDto.getEmail()));
         if(!service.setCurrentUser(service.getUser(systemDto.getEmail())))return null;
-        return service.sortContacts();
+        return service.sortContacts(systemDto);
     }
     /*
 

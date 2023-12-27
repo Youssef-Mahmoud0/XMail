@@ -388,7 +388,8 @@ public class Service {
 //    public int compare(Contact contact1, Contact contact2) {
 //        return contact2.getName().compareTo(contact1.getName());
 //    }
-    public ArrayList<Contact> sortContacts(){
+    public ArrayList<Contact> sortContacts(SystemDto systemDto){
+        if(systemDto.getSource().equals("default"))return this.currentUser.getContacts();
         ArrayList<Contact> sortedContacts = new ArrayList<>(this.currentUser.getContacts());
         Collections.sort(sortedContacts, Comparator.comparing(Contact::getName));
         return sortedContacts;
