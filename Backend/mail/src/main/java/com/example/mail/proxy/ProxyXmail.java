@@ -9,8 +9,8 @@ public class ProxyXmail implements Xmail {
     @Override
     public User checkeUser(String email){
         if(signedInUsers.contains(email)) {
-            System.out.println(email);
-            System.out.println(this.signedInUsers);
+//            System.out.println(email);
+//            System.out.println(this.signedInUsers);
             return xmail.checkeUser(email);
         }
         return null;

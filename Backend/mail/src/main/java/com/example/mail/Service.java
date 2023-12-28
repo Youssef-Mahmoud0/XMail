@@ -61,17 +61,22 @@ public class Service {
         mailBuilder.setPriority(mail.getPriority()).setPriority(mail.getPriority()).setFrom(mail.getFrom()).setSubject(mail.getSubject());
         if(mail.getAttachments()!=null) {
             mailBuilder.setAttachments(mail.getAttachments());
-            System.out.println("aaa"+mailBuilder.getAttachments());
-            System.out.println("attachments "+mail.getAttachments());
+//            System.out.println("aaa"+mailBuilder.getAttachments());
+//            System.out.println("attachments "+mail.getAttachments());
         }
         if(mail.getContent() != null)
             mailBuilder.setContent(mail.getContent());
         Mail newMail = mailBuilder.build();
         this.currentUser.getSentFolder();
         this.currentUser.addSent(newMail);
-        System.out.println(this.currentUser.getSentFolder().getMail());
+//        System.out.println(this.currentUser.getSentFolder().getMail());
         file.generateJsonFile(currentUser);
 //        mail.setFrom(this.currentUser.getEmail());
+        this.sortUserArrays();
+        SystemDto systemDto = new SystemDto();
+        systemDto.setSourceMails(this.currentUser.getSentFolder().getMail());
+        systemDto.setDestinationMails(this.currentUser.getDraftFolder().getMail());
+        System.out.println( "from add mail"+this.currentUser.getEmail());
         mail.setMailType("inbox");
         mail.setLocalDate(LocalDate.now());
         mail.setLocalTime(LocalTime.now());
@@ -79,10 +84,7 @@ public class Service {
         //Coming soon...
 //        setInbox(mail.getCc(),mail);
 //        setInbox(mail.getBcc(),mail);
-        this.sortUserArrays();
-        SystemDto systemDto = new SystemDto();
-        systemDto.setSourceMails(this.currentUser.getSentFolder().getMail());
-        systemDto.setDestinationMails(this.currentUser.getDraftFolder().getMail());
+
         return systemDto;
     }
     public DraftFolder draftMail(Mail mail){
@@ -257,9 +259,11 @@ public class Service {
     }
 
     public boolean setCurrentUser(User currentUser) {
-        System.out.println(currentUser.getEmail());
+//        System.out.println(currentUser.getEmail());
+        System.out.println("before fetch"+this.currentUser.getEmail());
         this.currentUser = this.xmail.checkeUser(currentUser.getEmail());
-        System.out.println(this.currentUser);
+//        this.currentUser = currentUser;
+        System.out.println("after fetch"+this.currentUser.getEmail());
         return this.currentUser != null;
     }
     public void sendDraft(Mail mail){
