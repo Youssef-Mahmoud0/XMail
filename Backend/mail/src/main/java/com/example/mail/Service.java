@@ -72,6 +72,11 @@ public class Service {
         System.out.println(this.currentUser.getSentFolder().getMail());
         file.generateJsonFile(currentUser);
 //        mail.setFrom(this.currentUser.getEmail());
+        this.sortUserArrays();
+        SystemDto systemDto = new SystemDto();
+        systemDto.setEmail(this.currentUser.getEmail());
+        systemDto.setSourceMails(this.currentUser.getSentFolder().getMail());
+        systemDto.setDestinationMails(this.currentUser.getDraftFolder().getMail());
         mail.setMailType("inbox");
         mail.setLocalDate(LocalDate.now());
         mail.setLocalTime(LocalTime.now());
@@ -79,11 +84,6 @@ public class Service {
         //Coming soon...
 //        setInbox(mail.getCc(),mail);
 //        setInbox(mail.getBcc(),mail);
-        this.sortUserArrays();
-        SystemDto systemDto = new SystemDto();
-        systemDto.setEmail(this.currentUser.getEmail());
-        systemDto.setSourceMails(this.currentUser.getSentFolder().getMail());
-        systemDto.setDestinationMails(this.currentUser.getDraftFolder().getMail());
         return systemDto;
     }
     public DraftFolder draftMail(Mail mail){
