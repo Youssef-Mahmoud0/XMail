@@ -10,12 +10,12 @@ public class RealXmail implements Xmail {
     public User checkeUser(String email){
         RegisteredUsers registeredUsers = new RegisteredUsers();
         System.out.println(registeredUsers);
-        System.out.println("this email sent to checkuser " + email);
+//        System.out.println("this email sent to checkuser " + email);
         int id = registeredUsers.getUserId(email);
         System.out.println(id);
         if (id!=0) {
-            System.out.println("Hello from realXmail");
-//            System.out.println(new FileService().getJsonData(id));
+//            System.out.println("Hello from realXmail");
+//            System.out.println(new FileService().getJsonData(id).getEmail());
             return new FileService().getJsonData(id);
         }
         return null;
