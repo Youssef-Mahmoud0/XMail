@@ -81,6 +81,7 @@ public class Service {
 //        setInbox(mail.getBcc(),mail);
         this.sortUserArrays();
         SystemDto systemDto = new SystemDto();
+        systemDto.setEmail(this.currentUser.getEmail());
         systemDto.setSourceMails(this.currentUser.getSentFolder().getMail());
         systemDto.setDestinationMails(this.currentUser.getDraftFolder().getMail());
         return systemDto;

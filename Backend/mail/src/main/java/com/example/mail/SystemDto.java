@@ -13,6 +13,9 @@ public class SystemDto {
     private String destination;
     private HashMap<String,String> hashMap;
 
+    public SystemDto() {
+    }
+
     public HashMap<String, String> getHashMap() {
         return hashMap;
     }
