@@ -1,2 +1,2 @@
 # XMail
-Mail Server
+A Mail Server
