@@ -1,4 +1,4 @@
-![image](https://github.com/rowanxgamal/XMail/assets/110842052/49d2e67a-6ad3-47ff-8866-4135a344562f)# XMail: 
+# XMail: 
   ## A Mail Server Web Application.
 
   ## Table of Contents
