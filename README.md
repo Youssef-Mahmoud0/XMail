@@ -9,7 +9,7 @@
   - [UML](#UML)
   - [User Interface](#User-Interface)
   - [Tutorial](#Tutorial)
-  - [Contributers](#Contributers)
+  - [Contributors](#Contributors)
   
   ### Features:
   
@@ -108,7 +108,7 @@
 ![image](https://github.com/rowanxgamal/XMail/assets/110842052/35ceda2c-361b-4af9-ba0b-df89e504e58c)
 
 
-## Contributers
+## Contributors
 ### Front-End
 - [Youssef Mahmoud](https://github.com/Youssef-Mahmoud0)
 - [Youmna Yasser](https://github.com/yomnay888)
